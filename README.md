@@ -200,27 +200,31 @@ Exemple de page EDU :
 </section>
 ```
 Une page minimale doit être constituée d'une balise racine *section* de type *"page"* représentant la page en elle-même et d'un élément HTML *DIV* enfant de type *"crea-background"*.  
-Le type d'un élément est indiqué dans l'attribut *"class"* de celui-ci est représente une classe CSS particulière.  
+Le type d'un élément est indiqué dans l'attribut *"data-type"*.  
 Les types d'éléments autorisés sont : ***"page", "background", "group",  "rectangle", "circle", "triangle", "line", "text", "image", "primitive", "table", "arrow", "sound", "qrcode", "answer_button", "cadre", "document_background"***.  
 
 **1. L'élément *"section"***  
 Une balise ***section*** de type ***"page"*** doit être l'élément de plus bas niveau du fichier EDU et contient tous les autres éléments de la page.  
 Il représente le corps de la page et en défini certaines caractéristiques.  
 Liste des attributs de la ***"section page"*** :  
-- ***class*** :
-- ***data-type*** :
-- ***id*** :
-- ***data-scale*** :
-- ***data-title*** :
-- ***data-player-color*** :
-- ***data-scene-color*** :
-- ***data-transition-type*** :
-- ***data-slide-pause*** :
-- ***data-visible*** :
-- ***data-cascade*** :
-- ***data-width*** :
-- ***data-height*** :
-- ***style*** :
+- ***class*** : classes CSS appliquées à la page. Doit contenir la classe ***"page"***. Autres valeurs possibles : ***"inherit"*** (utilisé dans l'éditeur afin de représenter les contours de la page lorsque la couleur du fond du document - "sous" la page - est en mode ***"Inherit"***).
+- ***data-type*** : obligatoirement de type ***"page"***
+- ***id*** : l'identifiant unique de la page, sous la forme *"xxxxxx-xxxxxx"* (ou "x" représente un caractère alphanumérique senseible à la casse *[0-9a-zA-Z]*
+- ***data-scale*** : la *scale* actuelle de la page, sert à appliquer un zoom sur celle-ci et les éléments qu'elle contient
+- ***data-title*** : le titre de la page. **(non usité actuellement)**
+- ***data-player-color*** : la couleur du lecteur HTML. **(non usité actuellement)**
+- ***data-scene-color*** : la couleur du fond du document pour cette page, surchargeant la valeur définie de manière globale. Valeurs possibles : ***'default'*** (valeur par défaut de l'éditeur et du player), ***'Inherit'*** (la scène hérite de la couleur de la page en cours), ***'#xxxxxx'*** (code hexadécimal d'une couleur) **(non usité actuellement)**
+- ***data-transition-type*** : en mode diaporama, type de transition entre cette page et la suivante. **(non usité actuellement)**
+- ***data-slide-pause*** : en mode diaporama automatique, durée de la pause sur cette page avant de passer à la suivante. **(non usité actuellement)**
+- ***data-visible*** : en mode diaporama, visibilité de la page lors de la navigation avec les boutons *"page suivante"* et *"page précédente"*. ***1 = visible; 0 = invisible***. **(non usité actuellement)**
+- ***data-cascade*** : apparition en cascade des éléments enfants de la page (hormis l'élément **background**). ***1 = apparition en cascade ; 0 = pas d'apparition en cascade***. **(non usité actuellement)**
+- ***data-width*** : largeur de la page en pixels
+- ***data-height*** : hauteur de la page en pixels
+- ***style*** : styles CSS appliqués à la page. Peuvent-être différents en fonction du mode d'affichage (diaporama ou classique), et du lieu d'affichage (éditeur ou lecteur). Les styles de base sont :
+```
+width: 794px; height: 1122px; background-color: rgba(255, 255, 255, 0); position: relative; left: 0px; top: 0px; display: block;
+```
+***width*** et ***height*** définissent la taille visible de la page après application du ***data-scale***. Le positionnement est généralement en mode ***"absolute"***, mais pourra être autre pour les besoin d'affichage de l'éditeur ou du lecteur. ***left*** et ***top***. L'attribut ***"display"*** peut servir aux jeux de masquage des pages dans l'éditeur ou le lecteur. La couleur de fond, ici d'opacité nulle n'est en général pas usité car un élément de type ***"background"***, premier enfant de la *section*, tient lieu et place du fond de page.
 
 **2. Le commentaire de début de page**
  
