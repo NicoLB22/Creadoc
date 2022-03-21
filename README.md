@@ -230,7 +230,7 @@ width: 794px; height: 1122px; background-color: rgba(255, 255, 255, 0); position
 Un commentaire HTML peut se trouver comme premier élément de la page (*section*).
 Ce commentaire sert, pour les pages contenant des exercices interactifs, à stocker les associations ***propositions/cibles*** définissant les bonnes et mauvaises réponses de la page.  
 Chaque exercice de la page est représenté sous forme de chaine JSON définissant toutes les associations possibles de propositions et cibles, celle-ci est cryptée au format *AES* avec comme clef l'*id* de la page.  
-Le tableau contenant ces chaînes de caractères représentant chaque exercice est stockée dans la balise de commentaire en le transformant en chaîne de caractères séparées par le symbole *","*. Ces chaînes étant ensuite encodées au format Base64 puis inversées.
+Le tableau contenant ces chaînes de caractères représentant chaque exercice est stockée dans la balise de commentaires en le transformant en chaîne de caractères séparées par le symbole *","*. Ces chaînes étant ensuite encodées au format Base64 puis inversées avant d'être stockées.
  
 ## Structure des objets CREADOC
  
