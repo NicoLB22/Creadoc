@@ -149,15 +149,41 @@ Données au format *JSON*, cryptées au format *AES* avec comme clef l'*id* du d
 }
 ```
 Le template est affichés dans l'export HTML (Menu ***"Crédits"***), PDF (au pied de la dernière page) et PNG d'une page (en pied de page).
- 
+
+## La balise *title*
+La balise ***title*** contient le titre du document qui sera utilisé comme nom des fichiers d'exports (en enlevant les caractères spéciaux, accentués et les espaces), et sera affiché dans l'onglet du navigateur web servant à afficher la version HTML.
+
+## La section *navigation*
+La section ***navigation*** contient la liste des pages du document, ordonnée de la première à la dernière.  
+Chaque item ***page*** contenu dans cette balise représentera une page unique et indiquera son identifiant (***id***), le nom de son fichier source (***file***) ainsi que le nom du fichier image (*PNG*) servant de vignette au document (***tn***).
+
 ## Les vignettes
- 
+Le document doit présenter une vignette au format PNG à la racine de l'archive GZ et intitulée tn_medium.png.  
+Chaque page doit également posséder une vignette au format PNG. Celles-ci doivent-être placées dans le dossier *"thumbnails"*.  
+Les vignettes doivent avoir une largeur de 332 pixels pour un document en mode paysage, et de 235 pixels en mode portrait. La hauteur est quand à elle variable et est calculée par l'éditeur afin de conserver l'aspect visuel du document sans modifier ses proportions.
+
 ## Les pages
- 
+Les différentes pages du document sont stockées dans des fichiers individuels placés dans le dossier *"pages"*.  
+Ces fichiers doivent être au format ***".EDU"***, format dérivé du XML et reprenant une structuration de balises compatibles au format HTML mais selon une structuration précise et une norme précise (voir plus bas).
+
 ## L'export "print"
- 
+Le fichier ***"export_print.html"*** est un export autonome du document compatible HTML.  
+Dans Creadoc®, il sert aux fonctions d'impression du document et à son export au format PDF.  
+À ce titre, il doit contenir tous les formatages CSS nécessaires à la bonne mise en page et au respect des dimensions du document lors de son impression.
+
 ## L'export HTML
- 
+Le fichier ***"nom-du-document.html*** est l'export autonome du document au format HTML.  
+C'est ce fichier qui sera exporté et partagé par les enseignants afin de consulter les documents dans un navigateur web et dans réaliser les éventuels exercices interactifs.  
+
+###### Ce fichier doit contenir :
+- Le *manifest* explicité plus haut.  
+- L'ensemble des styles CSS nécessaires à l'affichage du document et de ses éléments sous forme de pages, ainsi que des éléments constitutifs du lecteur HTML
+- Le code Javascript nécessaire à l'interprétation du format CREADOC et à la mise en œuvre de ses fonctionnalités, et permettant le fonctionnement du lecteur HTML  
+- L'ensemble des polices de caractères nécessaire au bon affichage du document et du lecteur
+- Les éléments HTML constitutifs de l'IHM du lecteur
+- L'ensemble du code EDU des pages du document à l'intérieur d'une balise HTML conteneur et enchaînées de la première à la dernière.
+
+
 ## Structure de la page CREADOC (format .edu)
  
 ## Structure des objets CREADOC
