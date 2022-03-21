@@ -252,8 +252,8 @@ Le tableau contenant ces chaînes de caractères représentant chaque exercice e
 **16. Les Blocs**  
 
 ## Format de stockage des exercices interactifs
-**1. La notion de proposition**
-**2. La notion de cible**
-**3. L'association proposition(s)/cible(s)
-**4. Les réponses
-**5. Exemple de stockage JSON
+**1. La notion de proposition**  
+**2. La notion de cible**  
+**3. L'association proposition(s)/cible(s)**  
+**4. Les réponses**  
+**5. Exemple de stockage JSON**  
