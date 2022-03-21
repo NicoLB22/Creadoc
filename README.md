@@ -226,7 +226,11 @@ width: 794px; height: 1122px; background-color: rgba(255, 255, 255, 0); position
 ```
 ***width*** et ***height*** définissent la taille visible de la page après application du ***data-scale***. Le positionnement est généralement en mode ***"absolute"***, mais pourra être autre pour les besoin d'affichage de l'éditeur ou du lecteur. ***left*** et ***top***. L'attribut ***"display"*** peut servir aux jeux de masquage des pages dans l'éditeur ou le lecteur. La couleur de fond, ici d'opacité nulle n'est en général pas usité car un élément de type ***"background"***, premier enfant de la *section*, tient lieu et place du fond de page.
 
-**2. Le commentaire de début de page**
+**2. Le commentaire de début de page**  
+Un commentaire HTML peut se trouver comme premier élément de la page (*section*).
+Ce commentaire sert, pour les pages contenant des exercices interactifs, à stocker les associations ***propositions/cibles*** définissant les bonnes et mauvaises réponses de la page.  
+Chaque exercice de la page est représenté sous forme de chaine JSON définissant toutes les associations possibles de propositions et cibles, celle-ci est cryptée au format *AES* avec comme clef l'*id* de la page.  
+Le tableau contenant ces chaînes de caractères représentant chaque exercice est stockée dans la balise de commentaire en le transformant en chaîne de caractères séparées par le symbole *","*. Ces chaînes étant ensuite encodées au format Base64 puis inversées.
  
 ## Structure des objets CREADOC
  
