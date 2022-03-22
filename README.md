@@ -97,8 +97,9 @@ La liste des auteurs se présente donc comme suit :
 	json_auteur0
 ]
 ```
-Afin de toujours préservé la paternité des auteurs du document, ces données *JSON* sont cryptées au format *AES* avec comme clef l'*id* du document.
-Utilisé uniquement dans l'éditeur de documents.
+Afin de toujours préserver la paternité des auteurs du document, ces données *JSON* sont cryptées au format *AES* avec comme clef l'*id* du document.
+Utilisé de manière fonctionnelle uniquement dans l'éditeur de documents, sa validité est testée lors de l'import de documents.  
+Pour des raisons de paternité de document et de respect des licences attribuées, sa présence et sa validité doivent tout de même être testées dans les lecteurs HTML.
 	
 **7. Meta *"licence"***  
 Licence en cours du document.  
@@ -141,14 +142,16 @@ Pour les documents interactifs, en mode d'export HTML, affichage automatique de 
 
 **18. Meta *"creadoc-datas"***  
 Meta pouvant servir à stocker diverses informations et données concernant le document.  
-*Pour le moment stocke uniquement le template HTML contenant les informations sur la licence du document et ses auteurs.*  
+**Pour le moment stocke uniquement le template HTML contenant les informations sur la licence du document et ses auteurs.**  
 Données au format *JSON*, cryptées au format *AES* avec comme clef l'*id* du document.
 ```
 {
 	"copyright-template": "..."
 }
 ```
-Le template est affichés dans l'export HTML (Menu ***"Crédits"***), PDF (au pied de la dernière page) et PNG d'une page (en pied de page).
+Le template est affichés dans l'export HTML (Menu ***"Crédits"***), PDF (au pied de la dernière page) et PNG d'une page (en pied de page).  
+Afin d'éviter la possibilité de suppression manuelle de cette méta par l'utilisateur, ou la suppression de sa valeur, celle-ci doit-être également présente même si le document ne comporte pas de licence, la valeur de ***copyright_template*** sera alors égale à l'***id*** du document.  
+La présence de cette méta et sa valeur doivent donc également être testées dans le lecteur de l'export HTML.
 
 ## La balise *title*
 La balise ***title*** contient le titre du document qui sera utilisé comme nom des fichiers d'exports (en enlevant les caractères spéciaux, accentués et les espaces), et sera affiché dans l'onglet du navigateur web servant à afficher la version HTML.
