@@ -269,23 +269,185 @@ C'est l'ensemble de ces objets représentant potentiellement les différents exe
 **Il faut noter que dans cette version du format CREADOC, chaque page ne supporte qu'un seul exercice. Toutes les associations propositions / cibles d'une page seront considérées comme faisant partie du même exercice (ex: un drag and drop et un bouton réponse présents sur la même page seront considérés comme faisant parti d'un seul exercice).**
 
 ## Structure des objets CREADOC
-**0. Le crea-element**
-**1. Le rectangle**  
-**2. Le cercle**  
-**3. Le triangle**  
-**4. Le trait**  
-**5. Les images**  
-**6. Les primitives**  
-**7. Les flèches**  
-**8. Le champ de texte**  
-**9. Le tableau**  
-**10. Le bouton son**  
-**11. Le QRCode**  
-**12. Le bouton réponse**  
-**13. Le fond de page**  
-**14. Les groupes**  
-**15. Les objets déplaçables**  
-**16. Les Blocs**  
+**1. Les éléments de base**  
+Chaque élément CREADOC présent sur une page doit-être un élément HTML *DIV* contenant la classe CSS correspondante à un des trois types de base :
+- *"crea-element"*, pour les objets classiques (rectangles, traits, images, boutons, etc...).
+- *"crea-background"*, pour l'objet représentant le fond de la page.
+- *"crea-group"*, pour les conteneurs d'objets (objets groupés)
+
+**2. Le type IElementObject**
+Les différentes propriétés d'un objet CREADOC sont représentés par un type d'objet Javascript particulier, appelé ***"ElementObject"***.  
+Voici l'interface *TypeScript* de ces objets :
+```
+export interface IElementObject {
+  id: string;
+  dataType: ElementType;
+  dataLocked: number;
+  dataZoom: number;
+  dataRatio: number;
+  dataHidden: number;
+  dataMinwidth?: number;
+  dataMinheight?: number;
+  dataGroup?: string;
+  dataSize?: number;
+  dataPremium?: number;
+  dataCibles?: string;
+  dataPropAnimate?: number;
+  dataPropZoom?: number;
+  dataMarkCibles?: number;
+  dataAllowWrong?: number;
+  dataAudioFeedback?: number;
+  dataSrc?: string;
+  svgDatas?: any;
+  svgEditable?: number;
+  svgBorderEditable?: number;
+  textDatas?: string;
+  transformCSS: ICSSTransform;
+  borderCSS?: ICSSBorder;
+  backgroundCSS?: ICSSBackground;
+  svgCSS?: ICSSSvg;
+  tableCSS?: ICSSTable;
+  arrowCSS?: ICSSArrow;
+  soundDatas?: ISoundDatas;
+  textCSS?: ICSSText;
+}
+```
+Cet objet défini, pour chaque élément, les différentes propriétés qui affecteront sont rendu visuel et/ou son comportement dans le cas d'éléments interactifs.  
+Un ***ElementObject*** utilise également des objets typés pour définir certaines de ses propriétés :
+```
+export enum ElementType {
+  RECTANGLE = 'rectangle',
+  CIRCLE = 'circle',
+  TRIANGLE = 'triangle',
+  LINE = 'line',
+  TEXT = 'text',
+  IMAGE = 'image',
+  PRIMITIVE = 'primitive',
+  BACKGROUND = 'background',
+  DOCUMENT_BACKGROUND = 'document_background',
+  GROUP = 'group',
+  TABLE = 'table',
+  CADRE = 'cadre',
+  ARROW = 'arrow',
+  SOUND = 'sound',
+  QRCODE = 'qrcode',
+  ANSWER_BUTTON = 'answer_button',
+}
+
+export interface ICSSTransform {
+ width: number;
+ height: number;
+ matrix: Matrix;
+ opacity: number;
+}
+
+export interface ICSSBorder {
+ dataId: string;
+ borderImageRepeat?: string;
+ borderImageSource?: string;
+ borderImageSlice?: string;
+ borderTopWidth?: number;
+ borderRightWidth?: number;
+ borderBottomWidth?: number;
+ borderLeftWidth?: number;
+ visibility?: string; // hidden or visible => border pattern div
+}
+
+export interface ICSSBackground {
+ dataId?: string;
+ width?: number;
+ height?: number;
+ backgroundDatas?: string;
+ clipPath?: string;
+ objectFit: string;
+ objectFitEditable: number;
+ objectPosition?: string;
+ imageRendering?: string;
+ paddingTop?: number;
+ paddingLeft?: number;
+ paddingRight?: number;
+ paddingBottom?: number;
+ extraPadding?: number;
+}
+
+export interface ICSSSvg {
+ strokeWidth: number;
+ stroke: string;
+ strokeOpacity: number;
+ strokeDasharray: string;
+ strokeLinecap?: string;
+ strokeLinejoin?: string;
+ strokeMiterlimit?: number;
+ fill?: string;
+ fillOpacity?: number;
+ borderRadius?: number;
+}
+
+export interface ICSSTable {
+ backgroundColor?: string;
+ borderColor?: string;
+ vPadding: number;
+ hPadding: number;
+ tab_class: string;
+}
+
+export interface ICSSArrow {
+ dataId: string;
+}
+
+export interface ISoundDatas {
+ autoplay: boolean;
+ loop: boolean;
+ controls: boolean;
+ volume: number;
+ src: string;
+}
+
+export interface ICSSText {
+  backgroundColor: string;
+  borderTopWidth: string;
+  borderTopStyle: string;
+  borderTopColor: string;
+  borderRightWidth: string;
+  borderRightStyle: string;
+  borderRightColor: string;
+  borderBottomWidth: string;
+  borderBottomStyle: string;
+  borderBottomColor: string;
+  borderLeftWidth: string;
+  borderLeftStyle: string;
+  borderLeftColor: string;
+  paddingTop: string;
+  paddingRight: string;
+  paddingBottom: string;
+  paddingLeft: string;
+  borderRadius: number;
+  borderWidth: string;
+  borderStyle: string;
+  borderColor: string;
+  textStyle?: string;
+}
+```
+L'ensemble de ses propriétés doivent-être stockées sous forme d'attributs ou de styles CSS inline sur l'élément CREADOC ou les éléments HTML enfants qu'il contient.
+
+**3. Le fond de page** 
+
+**4. Le rectangle**  
+**5. Le cercle**  
+**6. Le triangle**  
+**7. Le trait**  
+**8. Les images**  
+**9. Les primitives**  
+**10. Les flèches**  
+**11. Le champ de texte**  
+**12. Le tableau**  
+**13. Le bouton son**  
+**14. Le QRCode**  
+**15. Le bouton réponse**  
+ 
+**16. Les groupes**  
+**17. Les objets déplaçables**  
+**18. Les Blocs**  
 
 ## Format de stockage des exercices interactifs
 **1. La notion de proposition**  
