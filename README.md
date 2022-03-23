@@ -232,11 +232,44 @@ width: 794px; height: 1122px; background-color: rgba(255, 255, 255, 0); position
 **2. Le commentaire de début de page**  
 Un commentaire HTML peut se trouver comme premier élément de la page (*section*).
 Ce commentaire sert, pour les pages contenant des exercices interactifs, à stocker les associations ***propositions/cibles*** définissant les bonnes et mauvaises réponses de la page.  
-Chaque exercice de la page est représenté sous forme de chaine JSON définissant toutes les associations possibles de propositions et cibles, celle-ci est cryptée au format *AES* avec comme clef l'*id* de la page.  
-Le tableau contenant ces chaînes de caractères représentant chaque exercice est stockée dans la balise de commentaires en le transformant en chaîne de caractères séparées par le symbole *","*. Ces chaînes étant ensuite encodées au format Base64 puis inversées avant d'être stockées.
- 
+Chaque exercice de la page est représenté sous forme d'une chaine JSON formant une liste de représentation d'objets ***"Answer"*** définissant toutes les associations possibles de propositions et cibles avec le statut associé (1 = bonne réponse ; 0 = mauvaise réponse).  
+Un objet ***"Answer"*** est une association propocition/cible/status.
+
+#### Exemple d'objet *Answer*
+```
+{
+	proposition_id: "Ey0aQJ-9KvHyS-2KolAO",
+	cible_id: "k42GLi-8OMRVa-9UFFDk",
+	status: 1
+}
+```
+Afin d'être stockée pour le lecteur HTML, cet objet ***"Answer"*** sera stockée sous la forme :  
+```
+id_proposition-id_cible: status
+```
+La liste des objets ***"Answer"*** représentant un exercice sera donc une chaine JSON de cette forme :
+```
+{
+	id_proposition1-id_cible1: status,
+	id_proposition1-id_cible2: status
+	id_proposition2-id_cible1: status
+	id_proposition2-id_cible2: status
+	...
+}
+```
+
+#### Exemple de chaîne obtenue pour un exercice
+
+```
+{"Pkcr6l-kuGJY3-secPer-LhGiXm-03K0qZ-id85MX":1,"Pkcr6l-kuGJY3-secPer-BrKIe6-nOyVnd-xlA0Q4":0,"ECFZOD-YwEu8e-us4T8f-LhGiXm-03K0qZ-id85MX":0,"ECFZOD-YwEu8e-us4T8f-BrKIe6-nOyVnd-xlA0Q4":1,"Pkcr6l-kuGJY3-secPer-0iDL9URN0-xQG0RrNxQ-Ww5KAgZZq":0,"ECFZOD-YwEu8e-us4T8f-0iDL9URN0-xQG0RrNxQ-Ww5KAgZZq":0,"0iDL9URN0-xQG0RrNxQ-Ww5KAgZZq-LhGiXm-03K0qZ-id85MX":0,"0iDL9URN0-xQG0RrNxQ-Ww5KAgZZq-BrKIe6-nOyVnd-xlA0Q4":0,"0iDL9URN0-xQG0RrNxQ-Ww5KAgZZq-0iDL9URN0-xQG0RrNxQ-Ww5KAgZZq":1,"Pkcr6l-kuGJY3-secPer-OxlgMT-xAy5Lc-UIN9S3":0,"ECFZOD-YwEu8e-us4T8f-OxlgMT-xAy5Lc-UIN9S3":0,"0iDL9URN0-xQG0RrNxQ-Ww5KAgZZq-OxlgMT-xAy5Lc-UIN9S3":0,"OxlgMT-xAy5Lc-UIN9S3-LhGiXm-03K0qZ-id85MX":0,"OxlgMT-xAy5Lc-UIN9S3-BrKIe6-nOyVnd-xlA0Q4":0,"OxlgMT-xAy5Lc-UIN9S3-0iDL9URN0-xQG0RrNxQ-Ww5KAgZZq":0,"OxlgMT-xAy5Lc-UIN9S3-OxlgMT-xAy5Lc-UIN9S3":0}
+```
+
+Afin d'être stockée dans le commentaire, chacun de ces objets JSON représentant un exercice sera crypté au format *AES*, avec comme clef l'*id* de la page.  
+C'est l'ensemble de ces objets représentant potentiellement les différents exercices de la page qui sera concaténé par des ***","*** (puis encodé en Base64 et finalement renversée) qui sera stocké dans le commentaire de la page.  
+**Il faut noter que dans cette version du format CREADOC, chaque page ne supporte qu'un seul exercice. Toutes les associations propositions / cibles d'une page seront considérées comme faisant partie du même exercice (ex: un drag and drop et un bouton réponse présents sur la même page seront considérés comme faisant parti d'un seul exercice).**
+
 ## Structure des objets CREADOC
- 
+**0. Le crea-element**
 **1. Le rectangle**  
 **2. Le cercle**  
 **3. Le triangle**  
