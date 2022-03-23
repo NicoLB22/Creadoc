@@ -313,7 +313,7 @@ export interface IElementObject {
 }
 ```
 Cet objet défini, pour chaque élément, les différentes propriétés qui affecteront sont rendu visuel et/ou son comportement dans le cas d'éléments interactifs.  
-Un ***ElementObject*** utilise également des objets typés pour définir certaines de ses propriétés :
+Voici la description de la structure des différents objets utilisés par un ***ElementObject*** pour définir certaines de ses propriétés :
 ```
 export enum ElementType {
   RECTANGLE = 'rectangle',
