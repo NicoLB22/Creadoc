@@ -293,7 +293,6 @@ export interface IElementObject {
   dataMinwidth?: number;
   dataMinheight?: number;
   dataGroup?: string;
-  dataSize?: number;
   dataPropAnimate?: number;
   dataPropZoom?: number;
   dataMarkCibles?: number;
@@ -450,6 +449,13 @@ Un certain nombre de celles-ci sont stockées directement sur le DIV *crea-eleme
 - ***dataAllowWrong*** -> l'attribut ***data-allow-wrong***
 - ***dataAudioFeedback*** -> l'attribut ***data-audio-feedback***
 - ***dataHidden*** -> l'attribut ***data-hidden***
+- ***borderCSS.dataId*** -> l'attribut ***border-id***
+- ***arrowCSS.dataId*** -> l'attribut ***arrow-id***
+- ***backgroundCSS.dataId*** -> l'attribut ***pattern-id***
+- ***textCSS.textStyle*** -> l'attribut ***text-style***
+
+Seules ***id***, ***dataType***, ***dataLocked***, ***dataZoom*** et ***dataRatio*** sont obligatoires sur tous les éléments. 
+Les *crea-element* ainsi que les *crea-background* doivent également posséder les propriétés ***dataMinwidth*** et ***dataMinheight***.
 
 **3. Le fond de page et le rectangle** 
 Le fond de page est un objet rectangle particulier qui contient de typé ***crea-background*** au lieu de ***crea-element***.  
