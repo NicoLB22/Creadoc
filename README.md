@@ -494,7 +494,7 @@ Exemple de code pour afficher un rectangle simple (bordure noire de 2px, fond bl
 ```
 
 #### Description structurelle des layers
-Une particularité structurelle du rectangle est que son fond se trouve dessiner à l'intérieur de la bordure, et non au milieu de celle-ci (comportement naturel des SGV et autres format de dessin vectoriel). Le but est de pouvoir gérer correctement les arrondis tout en ne rognant pas sur le fond sous la bordure et qu'une image puisse être visible entièrement, sans être rognée lorsqu'elle est intégrée en fond de rectangle.
+Une particularité structurelle du rectangle est que son fond se trouve dessiné à l'intérieur de la bordure, et non au milieu de celle-ci (comportement naturel des SGV et autres format de dessin vectoriel). Le but est de pouvoir gérer correctement les arrondis tout en ne rognant pas sur le fond sous la bordure et qu'une image puisse être visible entièrement, sans être rognée sur ses côtés lorsqu'elle est intégrée en fond de rectangle.
 
 ##### backgroundSVG :
 ```
