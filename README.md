@@ -457,7 +457,7 @@ Un certain nombre de celles-ci sont stockées directement sur le DIV *crea-eleme
 Seules ***id***, ***dataType***, ***dataLocked***, ***dataZoom*** et ***dataRatio*** sont obligatoires sur tous les éléments. 
 Les *crea-element* ainsi que les *crea-background* doivent également posséder les propriétés ***dataMinwidth*** et ***dataMinheight***.
 
-**3. Le fond de page et le rectangle** 
+**4. Le fond de page et le rectangle**  
 Le fond de page est un objet rectangle particulier qui contient de typé ***crea-background*** au lieu de ***crea-element***.  
 La structure de ces deux objets est en tous points identique, à savoir :
 - L'élément HTML racine, est comme pour tous les élément de type DIV, contenant la classe CSS ***crea-element*** ou ***crea-background***.  
@@ -478,7 +478,7 @@ Exemple de code pour afficher un rectangle simple (bordure noire de 2px, fond bl
 			<svg preserveAspectRatio="none" viewBox="0 0 320 240">
 				<defs>
 					<clipPath id="8jNAU-WeeQ7">
-						<rect x="2" y="2" rx="0" ry="0" width="316" height="236" style="fill:#2196f3; stroke:none; stroke-linejoin:miter; stroke-linecap:butt;"></rect>
+						<rect x="2" y="2" rx="0" ry="0" width="316" height="236" style="fill:#000000; stroke:none; stroke-linejoin:miter; stroke-linecap:butt;"></rect>
 					</clipPath>
 				</defs>
 			</svg>
@@ -514,13 +514,29 @@ Une particularité structurelle du rectangle est que son fond se trouve dessiné
 
 
 ##### backgroundImageSVG :
+```
+<div class="crea-nested-image" style="display:none;">
+	<svg preserveAspectRatio="none" viewBox="0 0 320 240">
+		<defs>
+			<clipPath id="8jNAU-WeeQ7">
+				<rect x="2" y="2" rx="0" ry="0" width="316" height="236" style="fill:#000000; stroke:none; stroke-linejoin:miter; stroke-linecap:butt;"></rect>
+			</clipPath>
+		</defs>
+	</svg>
+	<img class="nested-image" e-padding="0" style="display:none; padding-left:2px; padding-top:2px; padding-right:2px; padding-bottom:2px; object-fit:none; object-position:left top; image-rendering:auto; clip-path:url(#8jNAU-WeeQ7);">
+	<div class="nested-pattern" style="display:none; padding-left:2px; padding-top:2px; padding-right:2px; padding-bottom:2px; background-repeat:repeat; clip-path:url(#8jNAU-WeeQ7);"></div>
+</div>
+```
+- Le DIV doit porter la classe CSS "*crea-nested-image*" et doit être invisible tant qu'aucune image n'est insérée dans le rectangle (*style="display:none;"*).
+- Le premier élément enfant de cet élément DIV est un SVG qui doit définir le masque à appliquer à l'image où à la pattern de fond. L'élément *CLIPPATH* de ce SVG qui défini le masque doit porter un ID sous la forme "XXXXX-XXXXX" (ou X est un caractère alphanumérique sensible à la casse). Cet ID sera repris dans la propriété CSS *clip-path:url(#8jNAU-WeeQ7);* de l'image et de la pattern. Le SVG sert à mettre un masque à l'image afin qu'elle ne sorte pas du rectangle lorsque celui-ci a des coins arrondis.
+- Le deuxième élément enfant de cet élément DIV est une balise IMG qui doit contenir l'image mise en fond du rectangle, lorsque celle-ci n'est pas une pattern qui doit se répéter. Le *padding* qui lui est appliqué correspond à l'épaisseur de la bordure du rectangle afin que l'image démarre "à l'intérieur" des bordures. La propriété ***e-padding*** est une marge inétrieur en pixels que l'utilisateur peut ajouter autour de l'image. elle correspond à la propriété ***elementObject.backgroundCSS.extraPadding***. Par défaut invisible.
+- Le troisième élément enfant de cette DIV et une nouvelle balise DIV qui sert à afficher les images en mode *pattern*, c'est à dire en mosaïque, qui se répètent dans le rectangle, horizontalement et verticalement. Le padding appliqué à cette élément correspond à l'épaisseur des bordures. Par défaut invisible.
 
 ##### borderSVG :
 
 ##### borderPatternDIV :
 
 
-**4. Le rectangle**  
 **5. Le cercle**  
 **6. Le triangle**  
 **7. Le trait**  
