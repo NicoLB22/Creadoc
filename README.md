@@ -275,6 +275,10 @@ Chaque élément CREADOC présent sur une page doit-être un élément HTML *DIV
 - *"crea-background"*, pour l'objet représentant le fond de la page.
 - *"crea-group"*, pour les conteneurs d'objets (objets groupés)
 
+Les éléments *crea-element* et *crea-background* contiennent tous un seul enfant, un élément HTML DIV typé *crea-wrapper* (du nom de la lasse CSS qu'il porte). Ce *crea-wrapper* est un contener qui organise la structure de l'élément sous forme de *layers* (calques), respectant l'ordre de rendu naturel HTML qui veut que le layer le plus "en-dessous" soit le premier, et celui du dessus soit le dernier. Le nombre de layers dépend de la complexité de l'élément et des possibilités de rendu offertes à l'utilisateur.
+
+Sur un document CREADOC, seuls les éléments de ces trois types seront modifiables par l'utilisateur. Tout autre élément sera rendu visuellement, mais sera ignoré par l'éditeur de documents ou le lecteur HTML.
+
 **2. Le type IElementObject**
 Les différentes propriétés d'un objet CREADOC sont représentés par un type d'objet Javascript particulier, appelé ***"ElementObject"***.  
 Voici l'interface *TypeScript* de ces objets :
@@ -290,8 +294,6 @@ export interface IElementObject {
   dataMinheight?: number;
   dataGroup?: string;
   dataSize?: number;
-  dataPremium?: number;
-  dataCibles?: string;
   dataPropAnimate?: number;
   dataPropZoom?: number;
   dataMarkCibles?: number;
@@ -428,9 +430,64 @@ export interface ICSSText {
   textStyle?: string;
 }
 ```
-L'ensemble de ses propriétés doivent-être stockées sous forme d'attributs ou de styles CSS inline sur l'élément CREADOC ou les éléments HTML enfants qu'il contient.
+L'ensemble de ses propriétés doivent-être stockées sous forme d'attributs ou de styles CSS inline sur l'élément CREADOC ou les éléments HTML enfants qu'il contient, selon les spécifications décrites ci-dessous. 
 
-**3. Le fond de page** 
+**3. Les propriétés IElementObject présentes sur l'élément HTML racine de l'objet CREADOC**  
+Toutes les propriétés décrites ci-dessus et structurantes de l'objet CREADOC sont stockées sous forme d'attributs, styles ou classes CSS sur les différents layers constitutifs de celui-ci.  
+Un certain nombre de celles-ci sont stockées directement sur le DIV *crea-element*, *crea-background* ou *crea-group*, à savoir :
+- ***id*** -> l'attribut ***id***
+- ***dataType*** -> l'attribut ***data-type***
+- ***dataRatio*** -> l'attribut ***data-ratio***
+- ***dataMinwidth*** -> l'attribut ***data-minwidth***
+- ***dataMinheight*** -> l'attribut ***data-minheight***
+- ***svgEditable*** -> l'attribut ***svg-edit***
+- ***svgBorderEditable*** -> l'attribut ***svg-border-edit***
+- ***dataLocked*** -> l'attribut ***data-locked***
+- ***dataGroup*** -> l'attribut ***data-group***
+- ***dataPropAnimate*** -> l'attribut ***data-prop-animate***
+- ***dataPropZoom*** -> l'attribut ***data-prop-zoom***
+- ***dataMarkCibles*** -> l'attribut ***data-mark-cibles***
+- ***dataAllowWrong*** -> l'attribut ***data-allow-wrong***
+- ***dataAudioFeedback*** -> l'attribut ***data-audio-feedback***
+- ***dataHidden*** -> l'attribut ***data-hidden***
+
+**3. Le fond de page et le rectangle** 
+Le fond de page est un objet rectangle particulier qui contient de typé ***crea-background*** au lieu de ***crea-element***.  
+La structure de ces deux objets est en tous points identique, à savoir :
+- L'élément HTML racine, est comme pour tous les élément de type DIV, contenant la classe CSS ***crea-element*** ou ***crea-background***.  
+- Cet élément contient un seul enfant, un élément DIV typé ***crea-wrapper***, qui lui même va contenir les autres éléments HTML qui servent au rendu visuel du Rectangle
+- Le premier enfant du *crea-wrapper*, dit ***backgroundSVG*** est un élément SVG servant au rendu du premier layer de *background* du rectangle (définissant la couleur de fond uniquement).
+- Le deuxième enfant du *crea-wrapper*, dit ***backgroundImageSVG*** est un élément DIV servant au rendu du deuxième layer de background (définissant une image ou une pattern de fond).
+- Le troisième élément enfant du *crea-wrapper*, dit ***borderSVG*** est un élément SVG servant au rendu des bordures du rectangles de type *"natives"*
+- Le quatrième et dernier élément du *crea-wrapper*, dit ***borderPatternDIV*** est un élément DIV servant au rendu des bordures du rectangle de type *"pattern"*.
+
+Exemple de code pour afficher un rectangle simple (bordure noire de 2px, fond blanc) :
+```
+<div id="9OTDJE-7Axegu-L37V58" class="crea-element eT4Fs141N-6ZqO7gWNG-FWjejYORK QYmzA2MJi-cIeVp9W2Y-GXkZzPx9B" data-type="rectangle" data-locked="0" data-zoom="1" data-ratio="0" data-minwidth="20" data-minheight="20" border-id="432" style="opacity:1; width:320px; height:240px; transform:matrix(1, 0, 0, 1, 237, 362)">
+	<div class="crea-wrapper">
+		<svg preserveAspectRatio="none" class="crea-svg" viewBox="0 0 320 240">
+			<rect vector-effect="non-scaling-stroke" x="2" y="2" rx="0" ry="0" width="316" height="236" style="fill:#ffffff; fill-opacity:1; stroke:#000000; stroke-width:2; stroke-linejoin:miter; stroke-linecap:butt; stroke-opacity:0;"></rect>
+		</svg>
+		<div class="crea-nested-image" style="display:none;">
+			<svg preserveAspectRatio="none" viewBox="0 0 320 240">
+				<defs>
+					<clipPath id="8jNAU-WeeQ7">
+						<rect x="2" y="2" rx="0" ry="0" width="316" height="236" style="fill:#2196f3; stroke:none; stroke-linejoin:miter; stroke-linecap:butt;"></rect>
+					</clipPath>
+				</defs>
+			</svg>
+			<img class="nested-image" e-padding="0" style="display:none; padding-left:2px; padding-top:2px; padding-right:2px; padding-bottom:2px; object-fit:none; object-position:left top; image-rendering:auto; clip-path:url(#8jNAU-WeeQ7);">
+			<div class="nested-pattern" style="display:none; padding-left:2px; padding-top:2px; padding-right:2px; padding-bottom:2px; background-repeat:repeat; clip-path:url(#8jNAU-WeeQ7);"></div>
+		</div>
+		<svg preserveAspectRatio="none" class="crea-svg" viewBox="-1 -1 320 240">
+			<rect vector-effect="non-scaling-stroke" x="0" y="0" rx="0" ry="0" width="318" height="238" style="fill:none; stroke:#000000; stroke-width:2; stroke-opacity:1; stroke-dasharray:0,0; stroke-linejoin:miter; stroke-linecap:butt;"></rect>
+		</svg>
+		<div class="crea-border">&nbsp;</div>
+	</div>
+</div>
+```
+
+
 
 **4. Le rectangle**  
 **5. Le cercle**  
