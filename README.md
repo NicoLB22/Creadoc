@@ -493,6 +493,31 @@ Exemple de code pour afficher un rectangle simple (bordure noire de 2px, fond bl
 </div>
 ```
 
+#### Description structurelle des layers
+Une particularité structurelle du rectangle est que son fond se trouve dessiner à l'intérieur de la bordure, et non au milieu de celle-ci (comportement naturel des SGV et autres format de dessin vectoriel). Le but est de pouvoir gérer correctement les arrondis tout en ne rognant pas sur le fond sous la bordure et qu'une image puisse être visible entièrement, sans être rognée lorsqu'elle est intégrée en fond de rectangle.
+
+##### backgroundSVG :
+```
+<svg preserveAspectRatio="none" class="crea-svg" viewBox="0 0 320 240">
+	<rect vector-effect="non-scaling-stroke" x="2" y="2" rx="0" ry="0" width="316" height="236" style="fill:#ffffff; fill-opacity:1; stroke:#000000; stroke-width:2; stroke-linejoin:miter; stroke-linecap:butt; stroke-opacity:0;"></rect>
+</svg>
+```
+- Le SVG doit porter la classe CSS *"crea-svg"*
+- La viewbox du SVG doit partir de *0,0* et avoir la largeur et la hauteur exacte du rectangle. Ici 320x240 pixels
+- Le SVG doit posséder un élément RECT unique avec la propriété *vector-effect="non-scaling-stroke"*
+- Les dimensions du rectangle doivent être égales à la largeur et la hauteur de la *viewBox* moins 2 fois l'épaisseur de la bordure. Ici *width="316" height="236"* pour une bordure de 2 pixels d'épaisseur (*stroke-width:2*)
+- L'arrondi des coins du rectangle est défini en pixels (*rx="0" ry="0"*) et doit aller de 0 à 100
+- La couleur de fond du rectangle doit-être mise en style CSS grâce à la propriété "*fill*", sa valeur doit-être un code ou une valeur de couleur reconnue. Pour ne pas afficher de fond au rectangle, mettre la valeur "***none***" à cette propriété .
+- L'épaisseur de la bordure doit-être égale à l'épaisseur visible de la bordure sur le *layer* correspondant et figurer dans l'attribut *style*. Ici *stroke-width:2*
+- La valeur de la propriété de style *stroke* n'a pas d'effet sur ce *layer*, par convention nous lui attribuons la valeur réelle de la couleur visible de celle-ci sur le layer correspondant
+- Les valeurs des styles "*stroke-linejoin:miter; stroke-linecap:miter*" sont par défaut celles présentées ici pour un contour plein, mais peuvent varier en fonction du type de contour (pointillés, discontinu...)
+
+
+##### backgroundImageSVG :
+
+##### borderSVG :
+
+##### borderPatternDIV :
 
 
 **4. Le rectangle**  
