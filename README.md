@@ -446,30 +446,30 @@ Exemple d'éléments racine :
 ```
 
 Description des attributs de l'élément racine, le DIV *crea-element*, *crea-background* ou *crea-group* :
-- element#id -> ID de l'élément, valeur de type ***/[0-9a-zA-Z]{6}-[0-9a-zA-Z]{6}-[0-9a-zA-Z]{6}/***. Correspond à ***IElementObject.id***.
-- element#class -> Catégorie de l'élément, trois valeurs possibles ***crea-element***, ***crea-background*** et ***crea-group***.
-- element#data-type -> Type de l'élément, doit avoir une valeur contenue dans la liste ***ElementType***. Correspond à ***IElementObject.dataType***.
-- element#data-locked -> Verrouillage de l'élément dans l'éditeur (transformable, éditable et déplaçable ou non), valeur 1 ou 0. Correspond à ***IElementObject.dataLocked***.
-- element#data-zoom -> Coefficient de zoom appliqué à l'élément (hérite du zoom appliquer à la page), la valeur 1 représentant un zoom de 100%. Correspond à ***IElementObject.dataZoom***.
-- element#data-ratio -> Dans l'éditeur, préservation des proportions ou non lors des transformations, valeur 0 ou 1. Correspond à ***IElementObject.dataRatio***.
-- element#data-minwidth -> Dans l'éditeur, largeur minimale autorisée de l'élément lors de transformations, valeur en pixels. Correspond à ***IElementObject.dataMinwidth***.
-- element#data-minheight -> Dans l'éditeur, hauteur minimale autorisée de l'élément lors de transformations, valeur en pixels. Correspond à ***IElementObject.dataMinheight***.
-- element#svg-edit -> Dans l'éditeur, autorisation à modifier les couleurs des SVG (Éléments images, images dans rectangle, pattern de traits). Correspond à ***IElementObject.svgEditable***.
-- element#svg-border-edit -> Dans l'éditeur, autorisation à modifier les couleurs des SVG de bordure des rectangle (pour les bordures en images). Correspond à ***IElementObject.svgBorderEditable***.
-- element#data-hidden -> L'élément doit-il être masqué ? Valeur 0 ou 1, si absent l'élément est affiché. Correspond à ***IElementObject.dataHidden***.
-- element#data-prop-animate -> Pour les éléments interactifs, appliquer une animation d'apparition de l'élément (fondu alpha). Valeur 0 ou 1. Correspond à ***IElementObject.dataPropAnimate***.
-- element#data-prop-zoom -> Pour les éléments interactifs déplaçables, appliquer un effet de zoom de l'élément lors de sa sélection (grossissement). Valeur 0 ou 1. Correspond à ***IElementObject.dataPropZoom***.
-- element#data-mark-cibles -> Pour les éléments interactifs déplaçables, signaler les cibles disponibles lors de la sélection / déplacement. Valeur 0 ou 1. Correspond à ***IElementObject.dataMarkCibles***.
-- element#data-allow-wrong -> Pour les éléments interactifs déplaçables, autoriser les mauvaises réponses. Valeur 0 ou 1. Correspond à ***IElementObject.dataAllowWrong***.
-- element#data-audio-feedback -> Pour les éléments interactifs déplaçables, jouer automatiquement un feedback sonore positif ou négatif lors du dépot de la proposition. Valeur 0 ou 1. Correspond à ***IElementObject.dataAudioFeedback***.
-- element#border-id -> Mémorisation de l'ID du type de bordure de l'élément. Correspond à ***IElementObject.borderCSS.dataId***.
-- element#arrow-id -> Pour les objets ARROW, mémorisation de l'ID du type de flêche. Correspond à ***IElementObject.arrowCSS.dataId***.
-- element#pattern-id -> Mémorisation de l'ID de la pattern (image) choisie comme motif pour les objets LINE ou pour les fond des objets RECTANGLES. Correspond à ***IElementObject.backgroundCSS.dataId***.
-- element#text-style -> Mémorisation de l'ID du style de mise en forme appliquée à l'objet texte (bordure et fond). Correspond à ***IElementObject.textCSS.textStyle***.
-- element#style.width -> Largeur réelle de l'élément en pixels (peut-être différent de la largeur visible). Correspond à ***IElementObject.transformCSS.width***.
-- element#style.height -> Hauteur réelle de l'élément en pixels (peut-être différent de la hauteur visible). Correspond à ***IElementObject.transformCSS.height***.
-- element#style.transform:matrix -> Matrice qui définit les transformation visuelles appliquées à l'objet (utiliséee pour définir la position de l'objet, sa scale, sa rotation et le zoom de la page). Correspond à ***IElementObject.transformCSS.matrix***.
-- element#style.opacity -> Opacité globale de l'élément. Correspond à ***IElementObject.transformCSS.opacity***.
+- ***element#id*** -> ID de l'élément, valeur de type **/[0-9a-zA-Z]{6}-[0-9a-zA-Z]{6}-[0-9a-zA-Z]{6}/**. Correspond à ***IElementObject.id***.
+- ***element#class*** -> Catégorie de l'élément, trois valeurs possibles ***crea-element***, ***crea-background*** et ***crea-group***.
+- ***element#data-type*** -> Type de l'élément, doit avoir une valeur contenue dans la liste ***ElementType***. Correspond à ***IElementObject.dataType***.
+- ***element#data-locked*** -> Verrouillage de l'élément dans l'éditeur (transformable, éditable et déplaçable ou non), valeur 1 ou 0. Correspond à ***IElementObject.dataLocked***.
+- ***element#data-zoom*** -> Coefficient de zoom appliqué à l'élément (hérite du zoom appliquer à la page), la valeur 1 représentant un zoom de 100%. Correspond à ***IElementObject.dataZoom***.
+- ***element#data-ratio*** -> Dans l'éditeur, préservation des proportions ou non lors des transformations, valeur 0 ou 1. Correspond à ***IElementObject.dataRatio***.
+- ***element#data-minwidth*** -> Dans l'éditeur, largeur minimale autorisée de l'élément lors de transformations, valeur en pixels. Correspond à ***IElementObject.dataMinwidth***.
+- ***element#data-minheight*** -> Dans l'éditeur, hauteur minimale autorisée de l'élément lors de transformations, valeur en pixels. Correspond à ***IElementObject.dataMinheight***.
+- ***element#svg-edit*** -> Dans l'éditeur, autorisation à modifier les couleurs des SVG (Éléments images, images dans rectangle, pattern de traits). Correspond à ***IElementObject.svgEditable***.
+- ***element#svg-border-edit*** -> Dans l'éditeur, autorisation à modifier les couleurs des SVG de bordure des rectangle (pour les bordures en images). Correspond à ***IElementObject.svgBorderEditable***.
+- ***element#data-hidden*** -> L'élément doit-il être masqué ? Valeur 0 ou 1, si absent l'élément est affiché. Correspond à ***IElementObject.dataHidden***.
+- ***element#data-prop-animate*** -> Pour les éléments interactifs, appliquer une animation d'apparition de l'élément (fondu alpha). Valeur 0 ou 1. Correspond à ***IElementObject.dataPropAnimate***.
+- ***element#data-prop-zoom*** -> Pour les éléments interactifs déplaçables, appliquer un effet de zoom de l'élément lors de sa sélection (grossissement). Valeur 0 ou 1. Correspond à ***IElementObject.dataPropZoom***.
+- ***element#data-mark-cibles*** -> Pour les éléments interactifs déplaçables, signaler les cibles disponibles lors de la sélection / déplacement. Valeur 0 ou 1. Correspond à ***IElementObject.dataMarkCibles***.
+- ***element#data-allow-wrong*** -> Pour les éléments interactifs déplaçables, autoriser les mauvaises réponses. Valeur 0 ou 1. Correspond à ***IElementObject.dataAllowWrong***.
+- ***element#data-audio-feedback*** -> Pour les éléments interactifs déplaçables, jouer automatiquement un feedback sonore positif ou négatif lors du dépot de la proposition. Valeur 0 ou 1. Correspond à ***IElementObject.dataAudioFeedback***.
+- ***element#border-id*** -> Mémorisation de l'ID du type de bordure de l'élément. Correspond à ***IElementObject.borderCSS.dataId***.
+- ***element#arrow-id*** -> Pour les objets ARROW, mémorisation de l'ID du type de flêche. Correspond à ***IElementObject.arrowCSS.dataId***.
+- ***element#pattern-id*** -> Mémorisation de l'ID de la pattern (image) choisie comme motif pour les objets LINE ou pour les fond des objets RECTANGLES. Correspond à ***IElementObject.backgroundCSS.dataId***.
+- ***element#text-style*** -> Mémorisation de l'ID du style de mise en forme appliquée à l'objet texte (bordure et fond). Correspond à ***IElementObject.textCSS.textStyle***.
+- ***element#style.width*** -> Largeur réelle de l'élément en pixels (peut-être différent de la largeur visible). Correspond à ***IElementObject.transformCSS.width***.
+- ***element#style.height*** -> Hauteur réelle de l'élément en pixels (peut-être différent de la hauteur visible). Correspond à ***IElementObject.transformCSS.height***.
+- ***element#style.transform:matrix*** -> Matrice qui définit les transformation visuelles appliquées à l'objet (utiliséee pour définir la position de l'objet, sa scale, sa rotation et le zoom de la page). Correspond à ***IElementObject.transformCSS.matrix***.
+- ***element#style.opacity*** -> Opacité globale de l'élément. Correspond à ***IElementObject.transformCSS.opacity***.
 
 Seules ***id***, ***dataType***, ***style***, ***dataLocked***, ***dataZoom*** et ***dataRatio*** sont obligatoires sur tous les éléments. 
 Les *crea-element* ainsi que les *crea-background* doivent également posséder les propriétés ***dataMinwidth*** et ***dataMinheight***.
