@@ -292,7 +292,6 @@ export interface IElementObject {
   dataHidden: number;
   dataMinwidth?: number;
   dataMinheight?: number;
-  dataGroup?: string;
   dataPropAnimate?: number;
   dataPropZoom?: number;
   dataMarkCibles?: number;
@@ -432,17 +431,10 @@ export interface ICSSText {
 L'ensemble de ses propriétés doivent-être stockées sous forme d'attributs ou de styles CSS inline sur l'élément CREADOC ou les éléments HTML enfants qu'il contient, selon les spécifications décrites ci-dessous. 
 
 ### 3. Les propriétés IElementObject présentes sur l'élément HTML racine de l'objet CREADOC
-Toutes les propriétés décrites ci-dessu, structurantes de l'objet CREADOC, sont stockées sous forme d'attributs, styles ou classes CSS sur les différents layers constitutifs de celui-ci.  
+Toutes les propriétés décrites ci-dessus, structurantes de l'objet CREADOC, sont stockées sous forme d'attributs, styles ou classes CSS sur les différents layers constitutifs de celui-ci.  
 Un certain nombre de celles-ci sont stockées directement sur le DIV *crea-element*, *crea-background* ou *crea-group*, à savoir :
-- ***id*** -> l'attribut ***id***
-- ***dataType*** -> l'attribut ***data-type***
-- ***dataRatio*** -> l'attribut ***data-ratio***
-- ***dataMinwidth*** -> l'attribut ***data-minwidth***
-- ***dataMinheight*** -> l'attribut ***data-minheight***
 - ***svgEditable*** -> l'attribut ***svg-edit***
 - ***svgBorderEditable*** -> l'attribut ***svg-border-edit***
-- ***dataLocked*** -> l'attribut ***data-locked***
-- ***dataGroup*** -> l'attribut ***data-group***
 - ***dataPropAnimate*** -> l'attribut ***data-prop-animate***
 - ***dataPropZoom*** -> l'attribut ***data-prop-zoom***
 - ***dataMarkCibles*** -> l'attribut ***data-mark-cibles***
@@ -457,6 +449,29 @@ Un certain nombre de celles-ci sont stockées directement sur le DIV *crea-eleme
 - ***transformCSS.height*** -> l'attribut ***style.height***
 - ***transformCSS.matrix*** -> l'attribut ***style.transform:matrix***
 - ***transformCSS.opacity*** -> l'attribut ***style.opacity***
+
+Exemple d'éléments racine :
+```
+// Élément crea-background
+<div id="MQpbyG-2un9FV-4phq5R" class="crea-background" data-type="background" data-locked="1" data-zoom="1" data-ratio="0" data-minwidth="20" data-minheight="20" border-id="432" style="opacity:1; width:794px; height:1122px; transform:matrix(1, 0, 0, 1, 0, 0)"></div>
+
+// Élément crea-group
+<div id="ld4iuGWaY-mqh5yHsSR-nB9MgCxIs" class="crea-group" data-type="group" data-locked="0" data-ratio="1" data-zoom="1" style="width: 458px; height: 311px; transform: matrix(1, 0, 0, 1, 136, 157);"></div>
+
+// Élément crea-element
+<div id="9OTDJE-7Axegu-L37V58" class="crea-element" data-type="rectangle" data-locked="0" data-zoom="1" data-ratio="0" data-minwidth="20" data-minheight="20" border-id="432" style="opacity:1; width:320px; height:240px; transform:matrix(1, 0, 0, 1, 237, 362)"></div>
+```
+
+Description des attributs de l'élément racine, le DIV *crea-element*, *crea-background* ou *crea-group* :
+- element#id -> ID de l'élément, valeur de type ***/[0-9a-zA-Z]{6}-[0-9a-zA-Z]{6}-[0-9a-zA-Z]{6}/***. Correspond à ***IElementObject.id***.
+- element#class -> Catégorie de l'élément, trois valeurs possibles ***crea-element***, ***crea-background*** et ***crea-group***.
+- element#data-type -> Type de l'élément, doit avoir une valeur contenue dans la liste ***ElementType***. Correspond à ***IElementObject.dataType***.
+- element#data-locked -> Verrouillage de l'élément dans l'éditeur (transformable, éditable et déplaçable ou non), valeur 1 ou 0. Correspond à ***IElementObject.dataLocked***.
+- element#data-zoom -> Coefficient de zoom appliqué à l'élément (hérite du zoom appliquer à la page), la valeur 1 représentant un zoom de 100%. Correspond à ***IElementObject.dataZoom***.
+- element#data-ratio -> Dans l'éditeur, préservation des proportions ou non lors des transformations, valeur 0 ou 1. Correspond à ***IElementObject.dataRatio***.
+- element#data-minwidth -> Dans l'éditeur, largeur minimale autorisée de l'élément lors de transformations, valeur en pixels. Correspond à ***IElementObject.dataMinwidth***.
+- element#data-minheight -> Dans l'éditeur, hauteur minimale autorisée de l'élément lors de transformations, valeur en pixels. Correspond à ***IElementObject.dataMinheight***.
+
 
 Seules ***id***, ***dataType***, ***style***, ***dataLocked***, ***dataZoom*** et ***dataRatio*** sont obligatoires sur tous les éléments. 
 Les *crea-element* ainsi que les *crea-background* doivent également posséder les propriétés ***dataMinwidth*** et ***dataMinheight***.
