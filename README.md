@@ -432,7 +432,7 @@ export interface ICSSText {
 L'ensemble de ses propriétés doivent-être stockées sous forme d'attributs ou de styles CSS inline sur l'élément CREADOC ou les éléments HTML enfants qu'il contient, selon les spécifications décrites ci-dessous. 
 
 **3. Les propriétés IElementObject présentes sur l'élément HTML racine de l'objet CREADOC**  
-Toutes les propriétés décrites ci-dessus et structurantes de l'objet CREADOC sont stockées sous forme d'attributs, styles ou classes CSS sur les différents layers constitutifs de celui-ci.  
+Toutes les propriétés décrites ci-dessu, structurantes de l'objet CREADOC, sont stockées sous forme d'attributs, styles ou classes CSS sur les différents layers constitutifs de celui-ci.  
 Un certain nombre de celles-ci sont stockées directement sur le DIV *crea-element*, *crea-background* ou *crea-group*, à savoir :
 - ***id*** -> l'attribut ***id***
 - ***dataType*** -> l'attribut ***data-type***
@@ -458,14 +458,14 @@ Seules ***id***, ***dataType***, ***dataLocked***, ***dataZoom*** et ***dataRati
 Les *crea-element* ainsi que les *crea-background* doivent également posséder les propriétés ***dataMinwidth*** et ***dataMinheight***.
 
 **4. Le fond de page et le rectangle**  
-Le fond de page est un objet rectangle particulier qui contient de typé ***crea-background*** au lieu de ***crea-element***.  
+Le fond de page est un objet rectangle particulier qui typé ***crea-background*** au lieu de ***crea-element***.  
 La structure de ces deux objets est en tous points identique, à savoir :
 - L'élément HTML racine, est comme pour tous les élément de type DIV, contenant la classe CSS ***crea-element*** ou ***crea-background***.  
 - Cet élément contient un seul enfant, un élément DIV typé ***crea-wrapper***, qui lui même va contenir les autres éléments HTML qui servent au rendu visuel du Rectangle
-- Le premier enfant du *crea-wrapper*, dit ***backgroundSVG*** est un élément SVG servant au rendu du premier layer de *background* du rectangle (définissant la couleur de fond uniquement).
-- Le deuxième enfant du *crea-wrapper*, dit ***backgroundImageSVG*** est un élément DIV servant au rendu du deuxième layer de background (définissant une image ou une pattern de fond).
-- Le troisième élément enfant du *crea-wrapper*, dit ***borderSVG*** est un élément SVG servant au rendu des bordures du rectangles de type *"natives"*
-- Le quatrième et dernier élément du *crea-wrapper*, dit ***borderPatternDIV*** est un élément DIV servant au rendu des bordures du rectangle de type *"pattern"*.
+- Le premier enfant du ***crea-wrapper***, dit ***backgroundSVG*** est un élément SVG servant au rendu du premier layer de *background* du rectangle (définissant la couleur de fond uniquement).
+- Le deuxième enfant du ***crea-wrapper***, dit ***backgroundImageSVG*** est un élément DIV servant au rendu du deuxième layer de background (définissant une image ou une pattern de fond).
+- Le troisième élément enfant du ***crea-wrapper***, dit ***borderSVG*** est un élément SVG servant au rendu des bordures du rectangles de type *"natives"*
+- Le quatrième et dernier élément du ***crea-wrapper***, dit ***borderPatternDIV*** est un élément DIV servant au rendu des bordures du rectangle de type *"pattern"* (motifs qui se répètent).
 
 Exemple de code pour afficher un rectangle simple (bordure noire de 2px, fond blanc) :
 ```
@@ -502,16 +502,23 @@ Une particularité structurelle du rectangle est que son fond se trouve dessiné
 	<rect vector-effect="non-scaling-stroke" x="2" y="2" rx="0" ry="0" width="316" height="236" style="fill:#ffffff; fill-opacity:1; stroke:#000000; stroke-width:2; stroke-linejoin:miter; stroke-linecap:butt; stroke-opacity:0;"></rect>
 </svg>
 ```
-- Le SVG doit porter la classe CSS *"crea-svg"*
-- La viewbox du SVG doit partir de *0,0* et avoir la largeur et la hauteur exacte du rectangle. Ici 320x240 pixels
-- Le SVG doit posséder un élément RECT unique avec la propriété *vector-effect="non-scaling-stroke"*
-- Les dimensions du rectangle doivent être égales à la largeur et la hauteur de la *viewBox* moins 2 fois l'épaisseur de la bordure. Ici *width="316" height="236"* pour une bordure de 2 pixels d'épaisseur (*stroke-width:2*)
-- L'arrondi des coins du rectangle est défini en pixels (*rx="0" ry="0"*) et doit aller de 0 à 100
-- La couleur de fond du rectangle doit-être mise en style CSS grâce à la propriété "*fill*", sa valeur doit-être un code ou une valeur de couleur reconnue. Pour ne pas afficher de fond au rectangle, mettre la valeur "***none***" à cette propriété .
-- L'épaisseur de la bordure doit-être égale à l'épaisseur visible de la bordure sur le *layer* correspondant et figurer dans l'attribut *style*. Ici *stroke-width:2*
-- La valeur de la propriété de style *stroke* n'a pas d'effet sur ce *layer*, par convention nous lui attribuons la valeur réelle de la couleur visible de celle-ci sur le layer correspondant
-- Les valeurs des styles "*stroke-linejoin:miter; stroke-linecap:miter*" sont par défaut celles présentées ici pour un contour plein, mais peuvent varier en fonction du type de contour (pointillés, discontinu...)
-
+Description des attributs :
+- svg#preserveAspectRatio -> la valeur doit être "***none***" afin de permettre un resize libre de l'élément.
+- svg#class -> la valeur doit être "***crea-svg***".
+- svg#viewBox -> l'origine est fixe et doit être en "***0,0***", la largeur et la hauteur doivent être exactement celle du rectangle, ici "***320,240***". La largeur et la hauteur de la *viewBox* correspondent à ***IElementObject.transformCSS.width*** et ***IElementObject.transformCSS.height***.
+- svg > rect#vector-effect -> valeur fixe "***non-scaling-stroke***" afin de permettre un resize de l'élément en conservant l'épaisseur d'origine de ses bordures.
+- svg > rect#x -> position horizontale du rectangle. En pixels, doit-être égale à l'épaisseur de la bordure du rectangle.
+- svg > rect#y -> position verticale du rectangle. En pixels, doit-être égale à l'épaisseur de la bordure du rectangle.
+- svg > rect#rx -> valeur du rayon horizontal de l'arrondi du rectangle, doit-être comprise entre 0 et 100. Correspond à ***IElementObject.svgCSS.borderRadius***.
+- svg > rect#ry -> valeur du rayon vertical de l'arrondi du rectangle, doit-être comprise entre 0 et 100. Correspond à ***IElementObject.svgCSS.borderRadius***.
+- svg > rect#width -> valeur en pixel de la largeur du rectangle. Valeur : largeur totale du rectangle (largeur de la viewBox) - 2 * l'épaisseur de la bordure.
+- svg > rect#height -> valeur en pixel de la hauteur du rectangle. Valeur : hauteur totale du rectangle (hauteur de la viewBox) - 2 * l'épaisseur de la bordure.
+- svg > rect#style.fill -> couleur de fond du rectangle. Valeur : code ou valeur CSS de couleur reconnue, "***none***" pour ne pas afficher de fond au rectangle. Correspond à ***IElementObject.svgCSS.fill***.
+- svg > rect#style.fill-opacity -> opacité du remplissage du rectangle. Correspond à ***IElementObject.svgCSS.fillOpacity***.
+- svg > rect#style.stroke -> couleur de la bordure du rectangle. Sans effet sur ce *layer*. Par convention on lui attribue la couleur visible de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.stroke***.
+- svg > rect#style.stroke-width -> valeur en pixel de l'épaisseur de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.strokeWidth***.
+- svg > rect#style.stroke-linejoin -> type de jointure entre les segments des bordures. Valeur "***miter***" pour des traits pleins
+- svg > rect#style.stroke-linecap -> forme des fins de segments des bordures. Valeur "***butt***" pour des traits pleins
 
 ##### backgroundImageSVG :
 ```
