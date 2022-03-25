@@ -269,7 +269,7 @@ C'est l'ensemble de ces objets représentant potentiellement les différents exe
 **Il faut noter que dans cette version du format CREADOC, chaque page ne supporte qu'un seul exercice. Toutes les associations propositions / cibles d'une page seront considérées comme faisant partie du même exercice (ex: un drag and drop et un bouton réponse présents sur la même page seront considérés comme faisant parti d'un seul exercice).**
 
 ## Structure des objets CREADOC
-**1. Les éléments de base**  
+### 1. Les éléments de base
 Chaque élément CREADOC présent sur une page doit-être un élément HTML *DIV* contenant la classe CSS correspondante à un des trois types de base :
 - *"crea-element"*, pour les objets classiques (rectangles, traits, images, boutons, etc...).
 - *"crea-background"*, pour l'objet représentant le fond de la page.
@@ -279,7 +279,7 @@ Les éléments *crea-element* et *crea-background* contiennent tous un seul enfa
 
 Sur un document CREADOC, seuls les éléments de ces trois types seront modifiables par l'utilisateur. Tout autre élément sera rendu visuellement, mais sera ignoré par l'éditeur de documents ou le lecteur HTML.
 
-**2. Le type IElementObject**
+### 2. Le type IElementObject
 Les différentes propriétés d'un objet CREADOC sont représentés par un type d'objet Javascript particulier, appelé ***"ElementObject"***.  
 Voici l'interface *TypeScript* de ces objets :
 ```
@@ -336,10 +336,10 @@ export enum ElementType {
 }
 
 export interface ICSSTransform {
- width: number;
- height: number;
- matrix: Matrix;
- opacity: number;
+ width: number; // Element real width in pixels -> defined on crea-element#style.width
+ height: number; // Element real height in pixels -> defined on crea-element#style.width
+ matrix: any; // Matrix object that define object transformations (used to define object position, scale, rotate and page zoom) ->  defined on crea-element#style.transform:matrix
+ opacity: number; // Object global opacity -> defined on crea-element#style.opacity
 }
 
 export interface ICSSBorder {
@@ -431,7 +431,7 @@ export interface ICSSText {
 ```
 L'ensemble de ses propriétés doivent-être stockées sous forme d'attributs ou de styles CSS inline sur l'élément CREADOC ou les éléments HTML enfants qu'il contient, selon les spécifications décrites ci-dessous. 
 
-**3. Les propriétés IElementObject présentes sur l'élément HTML racine de l'objet CREADOC**  
+### 3. Les propriétés IElementObject présentes sur l'élément HTML racine de l'objet CREADOC
 Toutes les propriétés décrites ci-dessu, structurantes de l'objet CREADOC, sont stockées sous forme d'attributs, styles ou classes CSS sur les différents layers constitutifs de celui-ci.  
 Un certain nombre de celles-ci sont stockées directement sur le DIV *crea-element*, *crea-background* ou *crea-group*, à savoir :
 - ***id*** -> l'attribut ***id***
@@ -453,11 +453,15 @@ Un certain nombre de celles-ci sont stockées directement sur le DIV *crea-eleme
 - ***arrowCSS.dataId*** -> l'attribut ***arrow-id***
 - ***backgroundCSS.dataId*** -> l'attribut ***pattern-id***
 - ***textCSS.textStyle*** -> l'attribut ***text-style***
+- ***transformCSS.width*** -> l'attribut ***style.width***
+- ***transformCSS.height*** -> l'attribut ***style.height***
+- ***transformCSS.matrix*** -> l'attribut ***style.transform:matrix***
+- ***transformCSS.opacity*** -> l'attribut ***style.opacity***
 
-Seules ***id***, ***dataType***, ***dataLocked***, ***dataZoom*** et ***dataRatio*** sont obligatoires sur tous les éléments. 
+Seules ***id***, ***dataType***, ***style***, ***dataLocked***, ***dataZoom*** et ***dataRatio*** sont obligatoires sur tous les éléments. 
 Les *crea-element* ainsi que les *crea-background* doivent également posséder les propriétés ***dataMinwidth*** et ***dataMinheight***.
 
-**4. Le fond de page et le rectangle**  
+### 4. Le fond de page et le rectangle
 Le fond de page est un objet rectangle particulier qui typé ***crea-background*** au lieu de ***crea-element***.  
 La structure de ces deux objets est en tous points identique, à savoir :
 - L'élément HTML racine, est comme pour tous les élément de type DIV, contenant la classe CSS ***crea-element*** ou ***crea-background***.  
@@ -467,7 +471,7 @@ La structure de ces deux objets est en tous points identique, à savoir :
 - Le troisième élément enfant du ***crea-wrapper***, dit ***borderSVG*** est un élément SVG servant au rendu des bordures du rectangles de type *"natives"*
 - Le quatrième et dernier élément du ***crea-wrapper***, dit ***borderPatternDIV*** est un élément DIV servant au rendu des bordures du rectangle de type *"pattern"* (motifs qui se répètent).
 
-Exemple de code pour afficher un rectangle simple (bordure noire de 2px, fond blanc) :
+**Exemple de code pour afficher un rectangle simple (bordure noire de 2px, fond blanc) :**
 ```
 <div id="9OTDJE-7Axegu-L37V58" class="crea-element eT4Fs141N-6ZqO7gWNG-FWjejYORK QYmzA2MJi-cIeVp9W2Y-GXkZzPx9B" data-type="rectangle" data-locked="0" data-zoom="1" data-ratio="0" data-minwidth="20" data-minheight="20" border-id="432" style="opacity:1; width:320px; height:240px; transform:matrix(1, 0, 0, 1, 237, 362)">
 	<div class="crea-wrapper">
@@ -493,10 +497,10 @@ Exemple de code pour afficher un rectangle simple (bordure noire de 2px, fond bl
 </div>
 ```
 
-#### Description structurelle des layers
+### Description structurelle des layers
 Une particularité structurelle du rectangle est que son fond se trouve dessiné à l'intérieur de la bordure, et non au milieu de celle-ci (comportement naturel des SGV et autres format de dessin vectoriel). Le but est de pouvoir gérer correctement les arrondis tout en ne rognant pas sur le fond sous la bordure et qu'une image puisse être visible entièrement, sans être rognée sur ses côtés lorsqu'elle est intégrée en fond de rectangle.
 
-##### backgroundSVG :
+#### backgroundSVG :
 ```
 <svg preserveAspectRatio="none" class="crea-svg" viewBox="0 0 320 240">
 	<rect vector-effect="non-scaling-stroke" x="2" y="2" rx="0" ry="0" width="316" height="236" style="fill:#ffffff; fill-opacity:1; stroke:#000000; stroke-width:2; stroke-linejoin:miter; stroke-linecap:butt; stroke-opacity:0;"></rect>
@@ -520,7 +524,7 @@ Description des attributs :
 - svg > rect#style.stroke-linejoin -> type de jointure entre les segments des bordures. Valeur "***miter***" pour des traits pleins
 - svg > rect#style.stroke-linecap -> forme des fins de segments des bordures. Valeur "***butt***" pour des traits pleins
 
-##### backgroundImageSVG :
+#### backgroundImageSVG :
 ```
 <div class="crea-nested-image" style="display:none;">
 	<svg preserveAspectRatio="none" viewBox="0 0 320 240">
@@ -539,26 +543,26 @@ Description des attributs :
 - Le deuxième élément enfant de cet élément DIV est une balise IMG qui doit contenir l'image mise en fond du rectangle, lorsque celle-ci n'est pas une pattern qui doit se répéter. Le *padding* qui lui est appliqué correspond à l'épaisseur de la bordure du rectangle afin que l'image démarre "à l'intérieur" des bordures. La propriété ***e-padding*** est une marge inétrieur en pixels que l'utilisateur peut ajouter autour de l'image. elle correspond à la propriété ***elementObject.backgroundCSS.extraPadding***. Par défaut invisible.
 - Le troisième élément enfant de cette DIV et une nouvelle balise DIV qui sert à afficher les images en mode *pattern*, c'est à dire en mosaïque, qui se répètent dans le rectangle, horizontalement et verticalement. Le padding appliqué à cette élément correspond à l'épaisseur des bordures. Par défaut invisible.
 
-##### borderSVG :
+#### borderSVG :
 
-##### borderPatternDIV :
+#### borderPatternDIV :
 
 
-**5. Le cercle**  
-**6. Le triangle**  
-**7. Le trait**  
-**8. Les images**  
-**9. Les primitives**  
-**10. Les flèches**  
-**11. Le champ de texte**  
-**12. Le tableau**  
-**13. Le bouton son**  
-**14. Le QRCode**  
-**15. Le bouton réponse**  
+### 5. Le cercle
+### 6. Le triangle
+### 7. Le trait
+### 8. Les images
+### 9. Les primitives
+### 10. Les flèches
+### 11. Le champ de texte
+### 12. Le tableau
+### 13. Le bouton son
+### 14. Le QRCode
+### 15. Le bouton réponse
  
-**16. Les groupes**  
-**17. Les objets déplaçables**  
-**18. Les Blocs**  
+### 16. Les groupes
+### 17. Les objets déplaçables
+### 18. Les Blocs
 
 ## Format de stockage des exercices interactifs
 **1. La notion de proposition**  
