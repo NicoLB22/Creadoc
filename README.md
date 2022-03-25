@@ -283,25 +283,25 @@ Sur un document CREADOC, seuls les éléments de ces trois types seront modifiab
 Les différentes propriétés d'un objet CREADOC sont représentés par un type d'objet Javascript particulier, appelé ***"ElementObject"***.  
 Voici l'interface *TypeScript* de ces objets :
 ```
-export interface IElementObject {
-  id: string;
-  dataType: ElementType;
-  dataLocked: number;
-  dataZoom: number;
-  dataRatio: number;
-  dataHidden: number;
-  dataMinwidth?: number;
-  dataMinheight?: number;
-  dataPropAnimate?: number;
-  dataPropZoom?: number;
-  dataMarkCibles?: number;
-  dataAllowWrong?: number;
-  dataAudioFeedback?: number;
-  dataSrc?: string;
-  svgDatas?: any;
-  svgEditable?: number;
-  svgBorderEditable?: number;
-  textDatas?: string;
+export interface IElementObject {// Type that describe CREADOC HTML element custom properties
+  id: string; // Element ID, must be /[0-9a-zA-Z]{6}-[0-9a-zA-Z]{6}-[0-9a-zA-Z]{6}/ -> element#id
+  dataType: ElementType; // Element type, value must be taken from ElementType enum ->element#data-type
+  dataLocked: number; // Is element locked ? (moves, transformations and customizations). Possible values: 0/1 -> element#data-locked
+  dataZoom: number; // Zoom ratio applied to element (inherits page zoom). Possible value: integer > 0 (1 == 100%) -> element#data-zoom
+  dataRatio: number; // Preserve aspect ratio during scale ? Possible values: 0/1 -> element#data-ratio
+  dataMinwidth?: number; // Element minimum width in pixels -> element#data-minwidth
+  dataMinheight?: number; // Element minimum height in pixels -> element#data-minheight
+  svgEditable?: number; // Allow SVG colors customization for background SVG, images and lines patterns. Possible values: 0/1 -> element#svg-edit
+  svgBorderEditable?: number; // Allow SVG colors customization for rectangles border's SVG. Possible values: 0/1 -> element#svg-border-edit
+  dataHidden: number; // Hiding element from page ? Possible values: 0/1 -> element#data-hidden
+  dataPropAnimate?: number; // Appearance of interactive elements with a fade effect in the player ? Possible values: 0/1 -> element#data-prop-animate
+  dataPropZoom?: number; // For movable interactive elements in the player, apply an up scale effect on selection ? Possible values: 0/1 -> element#data-prop-zoom
+  dataMarkCibles?: number; // For movable interactive elements in the player, showing available targets while selecting / moving ? Possible values: 0/1 -> element#data-mark-cibles
+  dataAllowWrong?: number; // For movable interactive elements in the player, allowing wrong answers ? Possible values: 0/1 -> element#data-allow-wrong
+  dataAudioFeedback?: number; // For movable interactive elements in the player, playing an audio feedback for correct and wrong answers ? Possible values: 0/1 -> element#data-audio-feedback
+  dataSrc?: string; // Used by IMAGE, QR_CODE to store base64 or SVG encoded image data
+  svgDatas?: any; // Used by SOUND, ANSWER_BUTTON and PRIMITIVE tostore their inner HTML content
+  textDatas?: string; // Used by TEXT and TABLE to store element textual content
   transformCSS: ICSSTransform;
   borderCSS?: ICSSBorder;
   backgroundCSS?: ICSSBackground;
