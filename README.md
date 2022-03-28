@@ -536,6 +536,7 @@ Description des attributs :
 - svg > rect#style.stroke-width -> valeur en pixel de l'épaisseur de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.strokeWidth***.
 - svg > rect#style.stroke-linejoin -> type de jointure entre les segments des bordures. Valeur "***miter***" pour des traits pleins
 - svg > rect#style.stroke-linecap -> forme des fins de segments des bordures. Valeur "***butt***" pour des traits pleins
+- svg > rect#style.stroke-opacity -> Opacité de la bordure du rectangle, doit être égale à 0.
 
 #### backgroundImageSVG :
 ```
@@ -551,6 +552,10 @@ Description des attributs :
 	<div class="nested-pattern" style="display:none; padding-left:2px; padding-top:2px; padding-right:2px; padding-bottom:2px; background-repeat:repeat; clip-path:url(#8jNAU-WeeQ7);"></div>
 </div>
 ```
+- div#class -> classes CSS appliqué à l'élément, doit avoir la valeur "***crea-nested-image***".
+- div#style.display -> Visibilité de l'élément. La valeur doit être "***block***" si une image est insérée dans le rectangle, sinon elle doit être "***none***".
+
+
 - Le DIV doit porter la classe CSS "*crea-nested-image*" et doit être invisible tant qu'aucune image n'est insérée dans le rectangle (*style="display:none;"*).
 - Le premier élément enfant de cet élément DIV est un SVG qui doit définir le masque à appliquer à l'image où à la pattern de fond. L'élément *CLIPPATH* de ce SVG qui défini le masque doit porter un ID sous la forme "XXXXX-XXXXX" (ou X est un caractère alphanumérique sensible à la casse). Cet ID sera repris dans la propriété CSS *clip-path:url(#8jNAU-WeeQ7);* de l'image et de la pattern. Le SVG sert à mettre un masque à l'image afin qu'elle ne sorte pas du rectangle lorsque celui-ci a des coins arrondis.
 - Le deuxième élément enfant de cet élément DIV est une balise IMG qui doit contenir l'image mise en fond du rectangle, lorsque celle-ci n'est pas une pattern qui doit se répéter. Le *padding* qui lui est appliqué correspond à l'épaisseur de la bordure du rectangle afin que l'image démarre "à l'intérieur" des bordures. La propriété ***e-padding*** est une marge inétrieur en pixels que l'utilisateur peut ajouter autour de l'image. elle correspond à la propriété ***elementObject.backgroundCSS.extraPadding***. Par défaut invisible.
