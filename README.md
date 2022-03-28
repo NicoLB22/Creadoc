@@ -520,22 +520,22 @@ Une particularité structurelle du rectangle est que son fond se trouve dessiné
 </svg>
 ```
 Description des attributs :
-- svg#preserveAspectRatio -> la valeur doit être "***none***" afin de permettre un resize libre de l'élément.
-- svg#class -> la valeur doit être "***crea-svg***".
-- svg#viewBox -> l'origine est fixe et doit être en "***0,0***", la largeur et la hauteur doivent être exactement celle du rectangle, ici "***320,240***". La largeur et la hauteur de la *viewBox* correspondent à ***IElementObject.transformCSS.width*** et ***IElementObject.transformCSS.height***.
-- svg > rect#vector-effect -> valeur fixe "***non-scaling-stroke***" afin de permettre un resize de l'élément en conservant l'épaisseur d'origine de ses bordures.
-- svg > rect#x -> position horizontale du rectangle. En pixels, doit-être égale à l'épaisseur de la bordure du rectangle.
-- svg > rect#y -> position verticale du rectangle. En pixels, doit-être égale à l'épaisseur de la bordure du rectangle.
-- svg > rect#rx -> valeur du rayon horizontal de l'arrondi du rectangle, doit-être comprise entre 0 et 100. Correspond à ***IElementObject.svgCSS.borderRadius***.
-- svg > rect#ry -> valeur du rayon vertical de l'arrondi du rectangle, doit-être comprise entre 0 et 100. Correspond à ***IElementObject.svgCSS.borderRadius***.
-- svg > rect#width -> valeur en pixel de la largeur du rectangle. Valeur : largeur totale du rectangle (largeur de la viewBox) - 2 * l'épaisseur de la bordure.
-- svg > rect#height -> valeur en pixel de la hauteur du rectangle. Valeur : hauteur totale du rectangle (hauteur de la viewBox) - 2 * l'épaisseur de la bordure.
-- svg > rect#style.fill -> couleur de fond du rectangle. Valeur : code ou valeur CSS de couleur reconnue, "***none***" pour ne pas afficher de fond au rectangle. Correspond à ***IElementObject.svgCSS.fill***.
-- svg > rect#style.fill-opacity -> opacité du remplissage du rectangle. Correspond à ***IElementObject.svgCSS.fillOpacity***.
-- svg > rect#style.stroke -> couleur de la bordure du rectangle. Sans effet sur ce *layer*. Par convention on lui attribue la couleur visible de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.stroke***.
-- svg > rect#style.stroke-width -> valeur en pixel de l'épaisseur de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.strokeWidth***.
-- svg > rect#style.stroke-linejoin -> type de jointure entre les segments des bordures. Valeur "***miter***" pour des traits pleins
-- svg > rect#style.stroke-linecap -> forme des fins de segments des bordures. Valeur "***butt***" pour des traits pleins
+- svg#preserveAspectRatio -> La valeur doit être "***none***" afin de permettre un resize libre de l'élément.
+- svg#class -> La valeur doit être "***crea-svg***".
+- svg#viewBox -> L'origine est fixe et doit être en "***0,0***", la largeur et la hauteur doivent être exactement celle du rectangle, ici "***320,240***". La largeur et la hauteur de la *viewBox* correspondent à ***IElementObject.transformCSS.width*** et ***IElementObject.transformCSS.height***.
+- svg > rect#vector-effect -> Valeur fixe "***non-scaling-stroke***" afin de permettre un resize de l'élément en conservant l'épaisseur d'origine de ses bordures.
+- svg > rect#x -> Position horizontale du rectangle. En pixels, doit-être égale à l'épaisseur de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.strokeWidth***.
+- svg > rect#y -> Position verticale du rectangle. En pixels, doit-être égale à l'épaisseur de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.strokeWidth***.
+- svg > rect#rx -> Valeur du rayon horizontal de l'arrondi du rectangle, doit-être comprise entre 0 et 100. Doit être égal à ***IElementObject.svgCSS.borderRadius - IElementObject.svgCSS.strokeWidth * .5 ***.
+- svg > rect#ry -> Valeur du rayon vertical de l'arrondi du rectangle, doit-être comprise entre 0 et 100. Doit être égal à ***IElementObject.svgCSS.borderRadius - IElementObject.svgCSS.strokeWidth * .5 ***.
+- svg > rect#width -> Valeur en pixel de la largeur du rectangle. Valeur : largeur totale du rectangle (largeur de la viewBox) - 2 * l'épaisseur de la bordure.
+- svg > rect#height -> Valeur en pixel de la hauteur du rectangle. Valeur : hauteur totale du rectangle (hauteur de la viewBox) - 2 * l'épaisseur de la bordure.
+- svg > rect#style.fill -> Couleur de fond du rectangle. Valeur : code ou valeur CSS de couleur reconnue, "***none***" pour ne pas afficher de fond au rectangle. Correspond à ***IElementObject.svgCSS.fill***.
+- svg > rect#style.fill-opacity -> Opacité du remplissage du rectangle. Correspond à ***IElementObject.svgCSS.fillOpacity***.
+- svg > rect#style.stroke -> Couleur de la bordure du rectangle. Sans effet sur ce *layer*. Par convention on lui attribue la couleur visible de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.stroke***.
+- svg > rect#style.stroke-width -> Valeur en pixel de l'épaisseur de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.strokeWidth***.
+- svg > rect#style.stroke-linejoin -> Type de jointure entre les segments des bordures. Valeur "***miter***" pour des traits pleins.
+- svg > rect#style.stroke-linecap -> Forme des fins de segments des bordures. Valeur "***butt***" pour des traits pleins.
 - svg > rect#style.stroke-opacity -> Opacité de la bordure du rectangle, doit être égale à 0.
 
 #### backgroundImageSVG :
@@ -554,6 +554,41 @@ Description des attributs :
 ```
 - div#class -> classes CSS appliqué à l'élément, doit avoir la valeur "***crea-nested-image***".
 - div#style.display -> Visibilité de l'élément. La valeur doit être "***block***" si une image est insérée dans le rectangle, sinon elle doit être "***none***".
+- div > svg#preserveAspectRatio -> La valeur doit être "***none***" afin de permettre un resize libre de l'élément.
+- div > svg#viewBox -> L'origine est fixe et doit être en "***0,0***", la largeur et la hauteur doivent être exactement celle du rectangle, ici "***320,240***". La largeur et la hauteur de la *viewBox* correspondent à ***IElementObject.transformCSS.width*** et ***IElementObject.transformCSS.height***.
+- div > svg > defs > clipPath#id -> ID du masque de l'image, valeur de type **/[0-9a-zA-Z]{5}-[0-9a-zA-Z]{5}/**.
+- div > svg > defs > clipPath > rect#x -> Position horizontale du rectangle de masque. En pixels, doit-être égale à l'épaisseur de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.strokeWidth***.
+- div > svg > defs > clipPath > rect#y -> Position verticale du rectangle de masque. En pixels, doit-être égale à l'épaisseur de la bordure du rectangle. Correspond à ***IElementObject.svgCSS.strokeWidth***.
+- div > svg > defs > clipPath > rect#rx -> Valeur du rayon horizontal de l'arrondi du rectangle du masque. Doit être égal à ***IElementObject.svgCSS.borderRadius - IElementObject.svgCSS.strokeWidth * .5 ***.
+- div > svg > defs > clipPath > rect#ry -> Valeur du rayon vertical de l'arrondi du rectangle du masque. Doit être égal à ***IElementObject.svgCSS.borderRadius - IElementObject.svgCSS.strokeWidth * .5 ***.
+- div > svg > defs > clipPath > rect#width -> Valeur en pixel de la largeur du rectangle. Valeur : largeur totale du rectangle (largeur de la viewBox) - 2 * l'épaisseur de la bordure.
+- div > svg > defs > clipPath > rect#height -> Valeur en pixel de la hauteur du rectangle. Valeur : hauteur totale du rectangle (largeur de la viewBox) - 2 * l'épaisseur de la bordure.
+- div > svg > defs > clipPath > rect#style.fill -> Valeur fixe "***#000000***".
+- div > svg > defs > clipPath > rect#style.stroke -> Valeur fixe "***none***".
+- div > svg > defs > clipPath > rect#style.stroke-linejoin -> Type de jointure entre les segments des bordures. Valeur "***miter***" pour des traits pleins.
+- div > svg > defs > clipPath > rect#style.stroke-linecap -> Forme des fins de segments des bordures. Valeur "***butt***" pour des traits pleins.
+- div > img#class -> 
+- div > img#e-padding ->
+- div > img#style.display ->
+- div > img#style.padding-left ->
+- div > img#style.padding-top ->
+- div > img#style.padding-right ->
+- div > img#style.padding-bottom ->
+- div > img#style.object-fit ->
+- div > img#style.object-position ->
+- div > img#style.image-rendering ->
+- div > img#style.clip-path ->
+- div > div#class ->
+- div > div#style.display ->
+- div > div#style.padding-left ->
+- div > div#style.padding-top ->
+- div > div#style.padding-right ->
+- div > div#style.padding-bottom ->
+- div > div#style.background-image ->
+- div > div#style.background-repeat ->
+- div > div#style.clip-path ->
+
+
 
 
 - Le DIV doit porter la classe CSS "*crea-nested-image*" et doit être invisible tant qu'aucune image n'est insérée dans le rectangle (*style="display:none;"*).
