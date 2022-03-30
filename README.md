@@ -566,25 +566,26 @@ Description des attributs :
 - div > svg > defs > clipPath > rect#style.stroke-linejoin -> Type de jointure entre les segments des bordures. Valeur "***miter***" pour des traits pleins.
 - div > svg > defs > clipPath > rect#style.stroke-linecap -> Forme des fins de segments des bordures. Valeur "***butt***" pour des traits pleins.
 - div > img#class -> La valeur doit-être "***nested-pattern***".
+- div > img#src -> Source de l'image en base64 ou SVG encodé. Non présent si pas d'image de fond ou si un motif est choisi. Correspond à ***IElementObject.backgroundCSS.backgroundDatas***.
 - div > img#e-padding -> Marge intérieur supplémentaire en pixels définie par l'utilisateur à appliquer tout autour de l'image (en plus du padding naturel lié aux bordures. Correspond à ***IElementObject.backgroundCSS.extraPadding***.
 - div > img#style.display -> ***block*** si une image est appliquée au rectangle, ***none*** dans le cas contraire.
-- div > img#style.padding-left -> Marge intérieure gauche à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern. Correspond à ***IElementObject.backgroundCSS.paddingLeft***.
-- div > img#style.padding-top -> Marge intérieure supérieure à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern. Correspond à ***IElementObject.backgroundCSS.paddingTop***.
-- div > img#style.padding-right -> Marge intérieure droite à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern. Correspond à ***IElementObject.backgroundCSS.paddingRight***.
-- div > img#style.padding-bottom -> Marge intérieure inférieure à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern. Correspond à ***IElementObject.backgroundCSS.paddingBottom***.
+- div > img#style.padding-left -> Marge intérieure gauche à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern plus la valeur de ***IElementObject.backgroundCSS.extraPadding***. Correspond à ***IElementObject.backgroundCSS.paddingLeft***.
+- div > img#style.padding-top -> Marge intérieure supérieure à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern plus la valeur de ***IElementObject.backgroundCSS.extraPadding***. Correspond à ***IElementObject.backgroundCSS.paddingTop***.
+- div > img#style.padding-right -> Marge intérieure droite à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern plus la valeur de ***IElementObject.backgroundCSS.extraPadding***. Correspond à ***IElementObject.backgroundCSS.paddingRight***.
+- div > img#style.padding-bottom -> Marge intérieure inférieure à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern plus la valeur de ***IElementObject.backgroundCSS.extraPadding***. Correspond à ***IElementObject.backgroundCSS.paddingBottom***.
 - div > img#style.object-fit -> Adaptation de l'image au rectangle. Valeurs possibles "***none***", "***cover***", "***contain***", "***scale-down***", "***fill***". Correspond à ***IElementObject.backgroundCSS.objectFit***.
 - div > img#style.object-position -> Position de l'image dans le rectangle: ( objectFit == 'none' || objectFit == 'fill' ) ? '***left top***' : '***center center***'.
 - div > img#style.image-rendering -> Algorithme de rendu des images, valeurs : "***auto***" ou "***pixelated***". Correspond à ***IElementObject.backgroundCSS.imageRendering***.
-- div > img#style.clip-path -> url du masque appliqué à l'image (clipPath), la valeur doit-être ***/url\(#[0-9a-zA-Z]{5}-[0-9a-zA-Z]{5}\)/***. Correspond à ***IElementObject.backgroundCSS.clipPath***.
-- div > div#class ->
-- div > div#style.display ->
-- div > div#style.padding-left -> Marge intérieure gauche à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern. Correspond à ***IElementObject.svgCSS.paddingLeft***.
-- div > div#style.padding-top -> Marge intérieure supérieure à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern. Correspond à ***IElementObject.svgCSS.paddingTop***.
-- div > div#style.padding-right -> Marge intérieure droite à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern. Correspond à ***IElementObject.svgCSS.paddingRight***.
-- div > div#style.padding-bottom -> Marge intérieure inférieure à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern. Correspond à ***IElementObject.svgCSS.paddingBottom***.
-- div > div#style.background-image ->
-- div > div#style.background-repeat ->
-- div > div#style.clip-path ->
+- div > img#style.clip-path -> Url du masque appliqué à l'image (clipPath), la valeur doit-être ***/url\(#[0-9a-zA-Z]{5}-[0-9a-zA-Z]{5}\)/***. Correspond à ***IElementObject.backgroundCSS.clipPath***.
+- div > div#class -> La valeur doit-être "***nested-pattern***".
+- div > div#style.display -> ***block*** si une pattern (image qui se répète) est appliquée au rectangle, ***none*** dans le cas contraire.
+- div > div#style.padding-left -> Marge intérieure gauche à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern plus la valeur de ***IElementObject.backgroundCSS.extraPadding***. Correspond à ***IElementObject.svgCSS.paddingLeft***.
+- div > div#style.padding-top -> Marge intérieure supérieure à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern plus la valeur de ***IElementObject.backgroundCSS.extraPadding***. Correspond à ***IElementObject.svgCSS.paddingTop***.
+- div > div#style.padding-right -> Marge intérieure droite à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern plus la valeur de ***IElementObject.backgroundCSS.extraPadding***. Correspond à ***IElementObject.svgCSS.paddingRight***.
+- div > div#style.padding-bottom -> Marge intérieure inférieure à appliquer à l'image. La valeur est égale à l'épaisseur de la bordure native ou de la bordure en pattern plus la valeur de ***IElementObject.backgroundCSS.extraPadding***. Correspond à ***IElementObject.svgCSS.paddingBottom***.
+- div > div#style.background-image -> Source de l'image à appliquer en pattern, principalement des images PNG. Valeur de la forme "***url('data:image/png;base64,...')***". Non présent si pas de motif ou si une image de fond est choisie. Correspond à "url('***IElementObject.backgroundCSS.backgroundDatas***')"
+- div > div#style.background-repeat -> Axes de répétition du motif : "***repeat***", "***repeat-x***" ou "***repeat-y***".
+- div > div#style.clip-path -> Url du masque appliqué à l'image (clipPath), la valeur doit-être ***/url\(#[0-9a-zA-Z]{5}-[0-9a-zA-Z]{5}\)/***. Correspond à ***IElementObject.backgroundCSS.clipPath***.
 
 
 
