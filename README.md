@@ -302,6 +302,7 @@ export interface IElementObject {// Type that describe CREADOC HTML element cust
   dataSrc?: string; // Used by IMAGE, QR_CODE to store base64 or SVG encoded image data
   svgDatas?: any; // Used by SOUND, ANSWER_BUTTON and PRIMITIVE tostore their inner HTML content
   textDatas?: string; // Used by TEXT and TABLE to store element textual content
+  level?: number; // Element's licence level (0 == free, 1 == MEMBER, 2 == MEMBER+, 3 == COMMERCIAL)
   transformCSS: ICSSTransform;
   borderCSS?: ICSSBorder;
   backgroundCSS?: ICSSBackground;
