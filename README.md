@@ -214,6 +214,7 @@ Liste des attributs de la ***"section page"*** :
 - ***data-type*** : obligatoirement de type ***"page"***
 - ***id*** : l'identifiant unique de la page, sous la forme *"xxxxxx-xxxxxx"* (ou "x" représente un caractère alphanumérique senseible à la casse *[0-9a-zA-Z]*
 - ***data-scale*** : la *scale* actuelle de la page, sert à appliquer un zoom sur celle-ci et les éléments qu'elle contient
+- ***data-level*** : niveau de licence de la page, indépendant du niveau de licence des éléments qu'elle contient (0 == free, 1 == MEMBER, 2 == MEMBER+, 3 == COMMERCIAL)
 - ***data-title*** : le titre de la page. **(non usité actuellement)**
 - ***data-player-color*** : la couleur du lecteur HTML. **(non usité actuellement)**
 - ***data-scene-color*** : la couleur du fond du document pour cette page, surchargeant la valeur définie de manière globale. Valeurs possibles : ***'default'*** (valeur par défaut de l'éditeur et du player), ***'Inherit'*** (la scène hérite de la couleur de la page en cours), ***'#xxxxxx'*** (code hexadécimal d'une couleur) **(non usité actuellement)**
@@ -302,7 +303,7 @@ export interface IElementObject {// Type that describe CREADOC HTML element cust
   dataSrc?: string; // Used by IMAGE, QR_CODE to store base64 or SVG encoded image data
   svgDatas?: any; // Used by SOUND, ANSWER_BUTTON and PRIMITIVE tostore their inner HTML content
   textDatas?: string; // Used by TEXT and TABLE to store element textual content
-  level?: number; // Element's licence level (0 == free, 1 == MEMBER, 2 == MEMBER+, 3 == COMMERCIAL)
+  dataLevel?: number; // Element's licence level (0 == free, 1 == MEMBER, 2 == MEMBER+, 3 == COMMERCIAL)
   transformCSS: ICSSTransform;
   borderCSS?: ICSSBorder;
   backgroundCSS?: ICSSBackground;
@@ -448,6 +449,7 @@ Description des attributs de l'élément racine, le DIV *crea-element*, *crea-ba
 - ***element#class*** -> Catégorie de l'élément, trois valeurs possibles ***crea-element***, ***crea-background*** et ***crea-group***.
 - ***element#data-type*** -> Type de l'élément, doit avoir une valeur contenue dans la liste ***ElementType***. Correspond à ***IElementObject.dataType***.
 - ***element#data-locked*** -> Verrouillage de l'élément dans l'éditeur (transformable, éditable et déplaçable ou non), valeur 1 ou 0. Correspond à ***IElementObject.dataLocked***.
+- ***element#data-level*** -> Niveau de licence de l'élément (0 == free, 1 == MEMBER, 2 == MEMBER+, 3 == COMMERCIAL). Correspond à ***IElementObject.dataLevel***.
 - ***element#data-zoom*** -> Coefficient de zoom appliqué à l'élément (hérite du zoom appliquer à la page), la valeur 1 représentant un zoom de 100%. Correspond à ***IElementObject.dataZoom***.
 - ***element#data-ratio*** -> Dans l'éditeur, préservation des proportions ou non lors des transformations, valeur 0 ou 1. Correspond à ***IElementObject.dataRatio***.
 - ***element#data-minwidth*** -> Dans l'éditeur, largeur minimale autorisée de l'élément lors de transformations, valeur en pixels. Correspond à ***IElementObject.dataMinwidth***.
