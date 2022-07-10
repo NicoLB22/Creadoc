@@ -24,9 +24,6 @@ Le format .CREADOC est le format éditable de Creadoc permettant la modificatio
 
 En partageant nos formats .EDU et .CREADOC, Creadoc permet à l’enseignant, l’élève, l’utilisateur de concevoir des ressources éducatives libres, open source, sans dépendance exclusive vis-à-vis d’un logiciel, et potentiellement interopérables.
 
-# Licence
-
-Les deux formats .EDU et .CREADOC sont libérés sous licence GNU Lesser General Public License (LGPL), version 3.
 
 # Spécifications du format de document CREADOC
 
@@ -654,3 +651,7 @@ Description des attributs :
 **3. L'association proposition(s)/cible(s)**  
 **4. Les réponses**  
 **5. Exemple de stockage JSON**  
+
+# Licence
+
+Les deux formats .EDU et .CREADOC sont libérés sous licence GNU Lesser General Public License (LGPL), version 3.
