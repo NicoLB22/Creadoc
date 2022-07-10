@@ -12,17 +12,21 @@ offrir une pérennité maximale.
 
 Pour cela, nous proposons deux formats.
 
-## Le format .EDU, qui est :
+### Le format .EDU, qui est :
 
 un format de stockage et de lecture adapté pour la conception d’une ressource éducative totalement open source et autonome ;
 un format qui peut être lu nativement par des navigateurs internet sans qu’il soit nécessaire d’installer un programme, une application ou un plugin tiers.
 
 
-## Le format .CREADOC, qui est :
+### Le format .CREADOC, qui est :
 
 Le format .CREADOC est le format éditable de Creadoc permettant la modification d’une ressource créée depuis un logiciel. Le format .EDU étant totalement open source, il est déjà possible de l’utiliser pour modifier le contenu ; en libérant également notre format source, l’importation et la modification seront facilitées pour les éditeurs souhaitant prendre en charge le format .EDU.
 
 En partageant nos formats .EDU et .CREADOC, Creadoc permet à l’enseignant, l’élève, l’utilisateur de concevoir des ressources éducatives libres, open source, sans dépendance exclusive vis-à-vis d’un logiciel, et potentiellement interopérables.
+
+# Licence
+
+Les deux formats .EDU et .CREADOC sont libérés sous licence GNU Lesser General Public License (LGPL), version 3.
 
 # Spécifications du format de document CREADOC
 
