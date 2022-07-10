@@ -1,3 +1,29 @@
+# Préambule
+
+Nous pensons qu’une ressource créée par un utilisateur depuis un logiciel devrait reposer sur un code open source et interopérable, afin d’éviter toute dépendance à des technologies propriétaires qui menaceraient sa pérennité ou limiteraient son exploitation par son auteur, a fortiori quand cette ressource est destinée à l’éducation.
+
+##Objectifs de ce partage :
+
+Donner la possibilité aux enseignants, élèves, à toute personne désireuse de créer des documents/ressources éducatives, qu’elles soient statiques ou interactives, de :
+
+rester maître de sa ressource (sans dépendance exclusive à un site ou logiciel de conception) ;
+la lire de manière totalement autonome dans un simple navigateur internet ;
+offrir une pérennité maximale.
+
+Pour cela, nous proposons ici :
+
+##Le format .EDU, qui est :
+
+un format de stockage et de lecture adapté pour la conception d’une ressource éducative totalement open source et autonome ;
+un format qui peut être lu nativement par des navigateurs internet sans qu’il soit nécessaire d’installer un programme, une application ou un plugin tiers.
+
+
+##Le format .CREADOC, qui est :
+
+Le format .CREADOC est le format éditable de Creadoc permettant la modification d’une ressource créée depuis un logiciel. Le format .EDU étant totalement open source, il est déjà possible de l’utiliser pour modifier le contenu ; en libérant également notre format source, l’importation et la modification seront facilitées pour les éditeurs souhaitant prendre en charge le format .EDU.
+
+En partageant nos formats .EDU et .CREADOC, Creadoc permet à l’enseignant, l’élève, l’utilisateur de concevoir des ressources éducatives libres, open source, sans dépendance exclusive vis-à-vis d’un logiciel, et potentiellement interopérables.
+
 # Spécifications du format de document CREADOC
 
 Le format CREADOC est un format de documents pouvant être utilisé par des applications tierces afin de générer et sauvegarder des documents statiques ou interactifs destinés principalement au monde de l'éducation.
