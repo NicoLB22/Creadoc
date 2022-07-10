@@ -2,7 +2,7 @@
 
 Nous pensons qu’une ressource créée par un utilisateur depuis un logiciel devrait reposer sur un code open source et interopérable, afin d’éviter toute dépendance à des technologies propriétaires qui menaceraient sa pérennité ou limiteraient son exploitation par son auteur, a fortiori quand cette ressource est destinée à l’éducation.
 
-## Objectifs de ce partage :
+### Objectifs de ce partage :
 
 Donner la possibilité aux enseignants, élèves, à toute personne désireuse de créer des documents/ressources éducatives, qu’elles soient statiques ou interactives, de :
 
@@ -10,7 +10,7 @@ rester maître de sa ressource (sans dépendance exclusive à un site ou logicie
 la lire de manière totalement autonome dans un simple navigateur internet ;
 offrir une pérennité maximale.
 
-Pour cela, nous proposons ici :
+Pour cela, nous proposons deux formats.
 
 ## Le format .EDU, qui est :
 
@@ -26,16 +26,15 @@ En partageant nos formats .EDU et .CREADOC, Creadoc permet à l’enseignant, 
 
 # Spécifications du format de document CREADOC
 
-Le format CREADOC est un format de documents pouvant être utilisé par des applications tierces afin de générer et sauvegarder des documents statiques ou interactifs destinés principalement au monde de l'éducation.
+Le format, CREADOC est un format de document pouvant être utilisé par des applications tierces afin de générer et sauvegarder des documents statiques ou interactifs destinés principalement au monde de l’éducation.
 
-Un document CREADOC peut-être multi-pages et de quelque format que se soit (A4, US Letter ou personnalisé).
-Il peut-être créé, ouvert, modifié et enregistré avec l'application Creadoc®, ou toute autre application compatible avec les présentes spécifications.
+Un document CREADOC peut être multipages et de quelque format que ce soit (A4, US Letter ou personnalisé). Il peut être créé, ouvert, modifié et enregistré avec l’application Creadoc, ou toute autre application compatible avec les présentes spécifications.
 
-Un document CREADOC, qu'il soit statique ou interactif, est destiné à être visualisé depuis n'importe quel navigateur web (ordinateur, mobile/tablette ou TBI). Le format d'export HTML généré par l'application Creadoc® présente un lecteur intégré proposant des boutons de navigation et de zoom, une fonction d'impression, la présentation de la licence attribué au document, ainsi qu'une palette d'outils TBI afin de pouvoir travailler sur le document (tableau blanc et noir, crayon, craies, couleurs...).
+Un document CREADOC, qu’il soit statique ou interactif, est destiné à être visualisé depuis n’importe quel navigateur web (ordinateur, mobile/tablette ou TBI). Le format d’export HTML généré par l’application Creadoc présente un lecteur intégré proposant des boutons de navigation et de zoom, une fonction d’impression, la présentation de la licence attribuée au document, ainsi qu’une palette d’outils TBI afin de pouvoir travailler sur le document (tableau blanc ou noir, crayon, craies, couleurs…).
 
-Un document CREADOC peut également être imprimé ou exporté au formats PDF et image directement depuis son éditeur.
+Un document CREADOC peut également être imprimé ou exporté aux formats .pdf et image directement depuis son éditeur.
 
-Enfin, un document Creadoc a pour vocation d'être partagé, lu et réalisé (dans le cas de documents interactifs) sur des outils collaboratifs entre professeurs et élèves telle la classe en ligne Creadoc Classroom®
+Enfin, un document CREADOC a pour vocation d’être partagé, lu et réalisé (dans le cas de documents interactifs) sur des outils collaboratifs entre professeurs et élèves, telle la classe en ligne Creadoc Classroom.
 ___
 
 
