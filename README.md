@@ -45,7 +45,6 @@ Les fichiers CREADOC sont des archives *GZIP* dont les extensions reconnues sont
 ## Contenu des fichiers CREADOC
  - Un fichier *"manifest.crea"*
  - Un fichier *"tn_medium.png"* correspondant à la vignette du document
- - Un fichier *"export_print.html"* servant à l'impression du document ainsi qu'à son export en PDF
  - Un fichier *"titre-du-document.html"* correspondant à la version lisible et standalone du document au format HTML
  - Un dossier *"pages"* contenant les fichiers ".edu" correspondants à chacune des pages (un fichier par page)
  - Un dossier *"thumbnails"* contenant les vignettes de chacune des pages
@@ -194,11 +193,6 @@ Les vignettes doivent avoir une largeur de 332 pixels pour un document en mode p
 ## Les pages
 Les différentes pages du document sont stockées dans des fichiers individuels placés dans le dossier *"pages"*.  
 Ces fichiers doivent être au format ***".EDU"***, format dérivé du XML et reprenant une structuration de balises compatibles au format HTML mais selon une structuration précise et une norme précise (voir plus bas).
-
-## L'export "print"
-Le fichier ***"export_print.html"*** est un export autonome du document compatible HTML.  
-Dans Creadoc®, il sert aux fonctions d'impression du document et à son export au format PDF.  
-À ce titre, il doit contenir tous les formatages CSS nécessaires à la bonne mise en page et au respect des dimensions du document lors de son impression.
 
 ## L'export HTML
 Le fichier ***"nom-du-document.html*** est l'export autonome du document au format HTML.  
@@ -629,21 +623,6 @@ Description des attributs :
 #### borderPatternDIV :
 
 
-### 5. Le cercle
-### 6. Le triangle
-### 7. Le trait
-### 8. Les images
-### 9. Les primitives
-### 10. Les flèches
-### 11. Le champ de texte
-### 12. Le tableau
-### 13. Le bouton son
-### 14. Le QRCode
-### 15. Le bouton réponse
- 
-### 16. Les groupes
-### 17. Les objets déplaçables
-### 18. Les Blocs
 
 ## Format de stockage des exercices interactifs
 **1. La notion de proposition**  
