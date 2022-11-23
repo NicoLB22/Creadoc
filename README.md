@@ -10,7 +10,7 @@ Nous pensons qu’une ressource créée par un utilisateur depuis un logiciel de
 - La lire de manière totalement autonome dans un simple navigateur internet ;
 - Offrir une pérennité maximale.
 
-2. Donner la possibilité aux éditeurs de s'appuyer sur ces deux formats afin de créer également des ressources éducatives libres et open source. En utilisant un format identique, cela permet également de rendre les ressources créées compatibles avec d'autres éditeurs. 
+2. Donner la possibilité aux éditeurs de s'appuyer sur ces deux formats afin de créer également des ressources éducatives libres et open source. En utilisant un format identique, cela permet de rendre les ressources créées compatibles entre les différents éditeurs. 
 
 Nous proposons deux formats.
 
