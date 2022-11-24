@@ -626,11 +626,10 @@ Description des attributs :
 
 
 ## Format de stockage des exercices interactifs
-**1. La notion de proposition**  
-**2. La notion de cible**  
-**3. L'association proposition(s)/cible(s)**  
-**4. Les réponses**  
-**5. Exemple de stockage JSON**  
+**1. Les propositions**  
+**2. Les boutons**  
+**3. Les réponses**  
+**4. Exemple de stockage JSON**  
 
 # Licence
 
