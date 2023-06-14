@@ -88,7 +88,7 @@ Les fichiers CREADOC sont des archives *GZIP* dont les extensions reconnues sont
 - *scene-color* : Couleur de la scène (fond en arrière plan des pages) pour ce document. Valeurs possibles : ***'default'*** (valeur par défaut de l'éditeur et du player), ***'Inherit'*** (la scène hérite de la couleur de la page en cours), ***'#xxxxxx'*** (code hexadécimal d'une couleur)
 
 **2. Meta *"generator"***  
-Application qui a servie à générer ce document CREADOC.
+Application qui a servi à générer ce document CREADOC.
 
 **3. Meta *"grades"***  
 Niveaux scolaires à qui est destiné le document.  
